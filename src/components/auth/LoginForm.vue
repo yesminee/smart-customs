@@ -10,39 +10,42 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-10 col-xl-7 mx-auto">
-                <div class="logo">
+                <div class="flex justify-center logo">
                   <img
-                    style="max-width: 300px"
+                    style="max-width: 150px"
                     src="../../assets/image/logo.png"
                     alt="Logo"
                   />
                 </div>
                 <h3 class="title">Marhabé !</h3>
+
                 <div class="alert alert-danger" role="alert" v-if="erreur">
                   L’e-mail ou le mot de passe entré ne correspond à aucun compte
                 </div>
+                <p style="font-weight: 300; color: #6084a4">
+                  Pas encore inscrit ?
+                  <a href="/signup">Inscrivez-vous</a>
+                </p>
                 <form>
                   <div class="form-group mb-3">
-                    <input
-                      name="email"
+                    <MDBInput
+                      label="Email"
                       id="email"
-                      class="form-control"
+                      class="form-control bg-white"
                       type="email"
-                      placeholder="Email"
                       required
                       v-model="email"
-                    />
+                    ></MDBInput>
                   </div>
                   <div class="form-group mb-3">
-                    <input
-                      name="motDePasse"
+                    <MDBInput
+                      label="Mot de passe"
                       id="motDePasse"
-                      class="form-control"
+                      class="form-control bg-white"
                       type="password"
-                      placeholder="Mot de passe"
                       required
                       v-model="motDePasse"
-                    />
+                    ></MDBInput>
                   </div>
                   <div class="d-grid gap-2">
                     <MDBBtn
@@ -54,6 +57,7 @@
                           rgba(79, 183, 203, 1) 100%
                         );
                         color: white;
+                        font-size: 12px;
                       "
                       block
                       @click.prevent="login"
@@ -73,7 +77,7 @@
 </template>
 
 <script setup lang="ts">
-import { MDBBtn } from "mdb-vue-ui-kit";
+import { MDBBtn, MDBInput } from "mdb-vue-ui-kit";
 import { ref } from "vue";
 
 const erreur = ref(false);
