@@ -29,7 +29,6 @@
                                     <a href="/signup">Inscrivez-vous</a>
                                 </p>
                                 <form>
-                                    
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="Email"
@@ -38,8 +37,7 @@
                                             type="email"
                                             required
                                             v-model="email"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="form-group mb-3">
                                         <MDBInput
@@ -49,8 +47,7 @@
                                             type="password"
                                             required
                                             v-model="motDePasse"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="d-grid gap-2">
                                         <MDBBtn
@@ -72,9 +69,8 @@
     </div>
 </template>
 
-
 <script setup lang="ts">
-import { MDBBtn,MDBInput } from "mdb-vue-ui-kit";
+import { MDBBtn, MDBInput } from "mdb-vue-ui-kit";
 import { ref } from 'vue'
 
 const erreur = ref(false);
@@ -86,7 +82,6 @@ const login = () => {
     emits("login", { email: email.value, motDePasse: motDePasse.value })
 }
 </script>
-
 
 <style scoped>
 .login,
