@@ -20,7 +20,10 @@
                                 <h3 class="title">Marhabé !</h3>
                                 <p style="font-weight: 300;color: #6084a4;">
                                     Déjà inscrit ?
-                                    <a href="\login" class="sc-AxiKw eSbheu">Connectez-vous</a>
+                                    <a
+                                        href="\login"
+                                        class="sc-AxiKw eSbheu"
+                                    >Connectez-vous</a>
                                 </p>
                                 <div
                                     class="alert alert-danger"
@@ -28,85 +31,78 @@
                                     v-if="erreur"
                                 >L’e-mail ou le mot de passe entré ne correspond à aucun compte</div>
                                 <form>
-                                    
-                                    
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="CIN"
                                             id="cin"
-                                            class="form-control bg-white" 
+                                            class="form-control bg-white"
                                             type="string"
                                             required
                                             v-model="cin"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
+                             
+
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="Nom"
                                             id="nom"
-                                            class="form-control bg-white" 
+                                            class="form-control bg-white"
                                             type="string"
                                             required
                                             v-model="nom"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="Prenom"
                                             id="prenom"
-                                            class="form-control bg-white" 
+                                            class="form-control bg-white"
                                             type="string"
                                             required
                                             v-model="prenom"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="Numéro de téléphone"
                                             id="NumeroTel"
-                                            class="form-control bg-white" 
+                                            class="form-control bg-white"
                                             type="string"
                                             required
                                             v-model="numeroTel"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="form-group mb-3">
                                         <MDBInput
-                                        type="email"
-                                        id="email"
-                                        class="form-control bg-white"
-                                        label="Email"
-                                        required
-                                        v-model="email"
-                                        >
-                                    </MDBInput>
-                                
+                                            type="email"
+                                            id="email"
+                                            class="form-control bg-white"
+                                            label="Email"
+                                            required
+                                            v-model="email"
+                                        ></MDBInput>
                                     </div>
+                     
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="Mot de passe"
                                             id="motDePasse"
                                             type="password"
-                                            class="form-control bg-white" 
+                                            class="form-control bg-white"
                                             required
                                             v-model="motDePasse"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="form-group mb-3">
                                         <MDBInput
                                             label="Confirmer le mot de passe "
                                             id="ConfMotDePasse"
-                                            class="form-control bg-white" 
+                                            class="form-control bg-white"
                                             type="password"
                                             required
                                             v-model="ConfMotDePasse"
-                                        >
-                                        </MDBInput>
+                                        ></MDBInput>
                                     </div>
                                     <div class="d-grid gap-2">
                                         <MDBBtn
@@ -130,7 +126,7 @@
 
 
 <script setup lang="ts">
-import { MDBBtn,MDBInput,MDBIcon } from "mdb-vue-ui-kit";
+import { MDBBtn, MDBInput, MDBIcon } from "mdb-vue-ui-kit";
 import { ref } from 'vue'
 
 const erreur = ref(false);
@@ -141,10 +137,61 @@ const nom = ref("");
 const prenom = ref("");
 const numeroTel = ref("");
 const cin = ref("");
-const emits = defineEmits(["login"]);
+const valide = ref(true);
+const emits = defineEmits(["signUp"]);
+
+const checkEmail = (email:string) => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+const checkNum=(num:string)=>{
+    var valide = /^[0-9]\d{7}$/;
+    return valide.test(num);
+}
+
+const checkCin=(num:string)=>{
+    var valide = /^[0-9]\d{7}$/;
+    return valide.test(num);
+}
+
+const checkMP=(mp:string)=>{
+    if(mp.length<8)
+        return false;
+    
+    return true;
+}
+const checkVerifMP=(mp:string,vmp:string)=>{
+    if(mp!=vmp)
+        return false;
+    
+    return true;
+}
 const signUp = () => {
-    console.log("user name:", email.value)
-    emits("login", { email: email.value, motDePasse: motDePasse.value })
+    if (!checkEmail(email.value)) {
+        alert('Adresse e-mail invalide');
+        valide.value=false;
+    }
+    if (!checkNum(numeroTel.value)) {
+        alert('Numéro de téléphone invalide!');
+        valide.value=false;
+    }
+    if (!checkCin(numeroTel.value)) {
+        alert('Numéro de CIN invalide!');
+        valide.value=false;
+    }
+    if (!checkMP(motDePasse.value)) {
+        alert('Mot de passe invalide!');
+        valide.value=false;
+    }
+    if (!checkVerifMP(motDePasse.value,ConfMotDePasse.value)) {
+        alert('Confirmer le mot de passe invalide!');
+        valide.value=false;
+    }
+    
+    if(valide.value){
+        emits("signUp", {cin:cin.value,nom:nom.value,prenom:prenom.value,numeroTel:numeroTel.value,email: email.value, motDePasse: motDePasse.value })
+    }    
 }
 </script>
 

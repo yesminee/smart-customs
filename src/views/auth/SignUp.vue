@@ -1,19 +1,28 @@
 <template>
-  <SignUp @login="signup" />
+    <SignUpForm @signUp="signup" />
 </template>
 
 <script setup lang="ts">
 import { ref } from "vue";
-import SignUp from "../../components/auth/SignUpForm.vue";
+import SignUpForm from "../../components/auth/SignUpForm.vue";
 import axios from "axios";
-const signup = ({
-  email,
-  motDePasse,
+const signup = async ({
+    cin, nom, prenom, numeroTel, email, motDePasse
 }: {
-  email: string;
-  motDePasse: string;
+    cin: string;
+    nom: string;
+    prenom: string;
+    numeroTel: string;
+    email: string;
+    motDePasse: string;
 }) => {
-  console.log(email, motDePasse);
+    console.log(cin, nom, prenom, numeroTel, email, motDePasse);
+    const res = await axios.post(`${import.meta.env.VITE_AUTH_SERVICE}/login`, {
+        cin, nom, prenom, numeroTel,
+        email,
+        motDePasse,
+    });
+    console.log(res);
 };
 </script>
 
