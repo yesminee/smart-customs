@@ -1,5 +1,6 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Login from "../views/auth/Login.vue";
+import SignUp from "../views/auth/SignUp.vue";
 import DRD from "../views/DRD/DRD.vue";
 import BFC from "../views/BFC/BFC.vue";
 
@@ -7,6 +8,7 @@ const history = createWebHistory();
 const routes = [
   { path: "/", component: Login },
   { path: "/login", component: Login },
+  { path: "/signup", component: SignUp },
   { path: "/DRD", component: DRD },
   { path: "/BFC", component: BFC },
 ];

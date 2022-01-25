@@ -18,31 +18,39 @@
                                     />
                                 </div>
                                 <h3 class="title">Marhabé !</h3>
-                                <div class="alert alert-danger" role="alert" v-if="erreur">
-                                    L’e-mail ou le mot de passe entré ne correspond à aucun compte
-                                </div>
+
+                                <div
+                                    class="alert alert-danger"
+                                    role="alert"
+                                    v-if="erreur"
+                                >L’e-mail ou le mot de passe entré ne correspond à aucun compte</div>
+                                <p style="font-weight: 300;color: #6084a4;">
+                                    Pas encore inscrit ?
+                                    <a href="/signup">Inscrivez-vous</a>
+                                </p>
                                 <form>
+                                    
                                     <div class="form-group mb-3">
-                                        <input
-                                            name="email"
+                                        <MDBInput
+                                            label="Email"
                                             id="email"
-                                            class="form-control"
+                                            class="form-control bg-white"
                                             type="email"
-                                            placeholder="Email"
                                             required
                                             v-model="email"
-                                        />
+                                        >
+                                        </MDBInput>
                                     </div>
                                     <div class="form-group mb-3">
-                                        <input
-                                            name="motDePasse"
+                                        <MDBInput
+                                            label="Mot de passe"
                                             id="motDePasse"
-                                            class="form-control"
+                                            class="form-control bg-white"
                                             type="password"
-                                            placeholder="Mot de passe"
                                             required
                                             v-model="motDePasse"
-                                        />
+                                        >
+                                        </MDBInput>
                                     </div>
                                     <div class="d-grid gap-2">
                                         <MDBBtn
@@ -52,7 +60,6 @@
                                             @click.prevent="login"
                                         >Se connecter</MDBBtn>
                                     </div>
-                               
                                 </form>
                             </div>
                         </div>
@@ -67,16 +74,16 @@
 
 
 <script setup lang="ts">
-import { MDBBtn } from "mdb-vue-ui-kit";
+import { MDBBtn,MDBInput } from "mdb-vue-ui-kit";
 import { ref } from 'vue'
 
-const erreur= ref(false);
-const email= ref("");
-const motDePasse= ref("");
-const emits=defineEmits(["login"]);
-const login=()=>{
-    console.log("user name:",email.value)
-    emits("login",{email:email.value,motDePasse:motDePasse.value})
+const erreur = ref(false);
+const email = ref("");
+const motDePasse = ref("");
+const emits = defineEmits(["login"]);
+const login = () => {
+    console.log("user name:", email.value)
+    emits("login", { email: email.value, motDePasse: motDePasse.value })
 }
 </script>
 
