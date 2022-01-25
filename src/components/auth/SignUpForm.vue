@@ -12,7 +12,7 @@
                             <div class="col-lg-10 col-xl-7 mx-auto">
                                 <div class="logo">
                                     <img
-                                        style="max-width: 300px;"
+                                        style="max-width: 150px;"
                                         src="../../assets/image/logo.png"
                                         alt="Logo"
                                     />
@@ -107,7 +107,7 @@
                                     <div class="d-grid gap-2">
                                         <MDBBtn
                                             style="background: rgb(9,9,121);
-                      background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(79,183,203,1) 100%); color:white;"
+                      background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(79,183,203,1) 100%); color:white; font-size: 12px;"
                                             block
                                             @click.prevent="signUp"
                                         >Créer mon compte</MDBBtn>
