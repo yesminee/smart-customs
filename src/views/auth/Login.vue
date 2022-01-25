@@ -34,5 +34,3 @@ const login = async ({
   router.push("/magasin");
 };
 </script>
-
-<style scoped></style>
