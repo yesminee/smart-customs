@@ -6,14 +6,14 @@
 import { onMounted } from "vue";
 import { useStore } from "vuex";
 
-const { commit } = useStore();
+const store = useStore();
 
 onMounted(() => {
   const user = localStorage.getItem("user");
   const token = localStorage.getItem("token");
   if (!user || !token) return;
-  commit("setUser", user);
-  commit("setToken", token);
+  store.commit("setUser", user);
+  store.commit("setToken", token);
 });
 </script>
 

@@ -16,7 +16,7 @@ const routes = [
 const router = createRouter({ history, routes });
 
 router.beforeEach((to, from, next) => {
-  if (
+  /*if (
     to.path == "/DRD" &&
     (!localStorage.getItem("user") ||
       // @ts-ignore
@@ -31,7 +31,7 @@ router.beforeEach((to, from, next) => {
       localStorage.getItem("user").type !== "BFC")
   )
     return next("/login");
-
+*/
   next();
 });
 

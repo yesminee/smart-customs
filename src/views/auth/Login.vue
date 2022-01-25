@@ -6,12 +6,11 @@
 import LoginForm from "../../components/auth/LoginForm.vue";
 import axios from "axios";
 import { useStore } from "vuex";
-import { ref } from "vue";
-const wiw = () => {
-  console.log(token.value);
-};
-const { commit, getters } = useStore();
-const token = ref(getters.getToken);
+import { useRouter } from "vue-router";
+
+const store = useStore();
+const router = useRouter();
+
 const login = async ({
   email,
   motDePasse,
@@ -30,9 +29,8 @@ const login = async ({
   localStorage.setItem("user", JSON.stringify(res.data.user));
   localStorage.setItem("token", res.data.token);
 
-  commit("setUser", res.data.user);
-  commit("setToken", res.data.token);
+  store.commit("setUser", res.data.user);
+  store.commit("setToken", res.data.token);
+  router.push("/magasin");
 };
 </script>
-
-<style scoped></style>
