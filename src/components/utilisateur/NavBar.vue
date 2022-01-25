@@ -11,9 +11,9 @@
         <MDBCollapse v-model="collapse5" id="navbarRightAlignExample">
             <MDBNavbarNav right class="mb-2 mb-lg-0">
                 <!-- Right links -->
-                <MDBNavbarItem class="text-light" to="#" active>Magasin</MDBNavbarItem>
-                <MDBNavbarItem  class="text-white" href="#" active>Profil</MDBNavbarItem>
-                <MDBNavbarItem class="text-white" href="#" active>Déconnexion</MDBNavbarItem>
+                <MDBNavbarItem light to="#" active><span class="font-weight-bold" style="color: white;">Magasin</span></MDBNavbarItem>
+                <MDBNavbarItem  light href="#" active><span class="font-weight-bold" style="color: white;">Profil</span></MDBNavbarItem>
+                <MDBNavbarItem light href="#" active><span class="font-weight-bold" style="color: white;">Déconnexion</span></MDBNavbarItem>
             </MDBNavbarNav>
         </MDBCollapse>
         <!-- Collapsible wrapper -->
@@ -38,4 +38,7 @@ const collapse5 = ref(false);
 const dropdown8 = ref(false);
 </script>
 
-<style scoped></style>
+<style scoped>
+
+
+</style>
