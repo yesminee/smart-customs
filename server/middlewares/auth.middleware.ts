@@ -1,4 +1,4 @@
-import user from "../models/user.model";
+import user from "../models/users/user.model";
 import jwt from "jsonwebtoken";
 // @ts-ignore
 export default async (req, res, next) => {
