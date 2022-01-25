@@ -1,27 +1,35 @@
 import { createWebHistory, createRouter } from "vue-router";
 import Login from "../views/auth/Login.vue";
-import administration from "../views/Administrateur/administration.vue";
-import accueil from "../views/Superviseur/accueil.vue";
+import DRD from "../views/DRD/DRD.vue";
+import BFC from "../views/BFC/BFC.vue";
 
 const history = createWebHistory();
 const routes = [
+  { path: "/", component: Login },
   { path: "/login", component: Login },
-  { path: "/administration", component: administration },
-  { path: "/accueil", component: accueil },
-
+  { path: "/DRD", component: DRD },
+  { path: "/BFC", component: BFC },
 ];
 const router = createRouter({ history, routes });
 
 router.beforeEach((to, from, next) => {
-    if(to.name=="accueil" && !localStorage.getItem("user")) return next("/");
-    if(localStorage.getItem("user")){
-        // @ts-ignore
-      if(localStorage.getItem("user").type=='Administrateur')
-        return next("/administration");
-      }
-      else
-        return next("/accueil")
-      next()
-    
-  })
+  if (
+    to.path == "/DRD" &&
+    (!localStorage.getItem("user") ||
+      // @ts-ignore
+      localStorage.getItem("user").type !== "DRD")
+  )
+    return next("/login");
+
+  if (
+    to.path == "/BFC" &&
+    (!localStorage.getItem("user") ||
+      // @ts-ignore
+      localStorage.getItem("user").type !== "BFC")
+  )
+    return next("/login");
+
+  next();
+});
+
 export default router;
