@@ -10,19 +10,16 @@
                   <select
                     class="appearance-none rounded h-full border sm:rounded-r-none sm:border-r-0 block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-indigo-500"
                   >
-                    <option>tous</option>
-                    <optgroup label="Etat">
+                    <option>Etat</option>
                       <option>Accepté</option>
                       <option>En attente</option>
                       <option>Refusé</option>
-                    </optgroup>
-                    <optgroup label="Nom magasin">
-                      <option>FPS</option>
-                      <option>FPSE</option>
-                      <option>Monitorat</option>
-                    </optgroup>
+                
                   </select>
                   <div
+                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                  >
+                    <div
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
                   >
                     <svg
@@ -35,11 +32,12 @@
                       />
                     </svg>
                   </div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="justify-self-end">
-              <router-link to="/ajouterDemande">
+              <router-link to="/ajouter-demande">
                 <button
                   class="text-indigo-700 text-sm rounded py-2 px-4 border border-indigo-700 font-medium hover:text-white focus:outline-none hover:bg-indigo-700"
                 >
@@ -84,13 +82,10 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <div class="flex items-center">
-                        <router-link
-                          to="/volontaire/profile"
-                          class="flex-shrink-0 w-10 h-10"
-                        >
+                        
                           
-                          <i class="fas fa-home"></i>
-                        </router-link>
+                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700" @click="supprimer(demande.nom)"></i>
+                      
 
                         <div class="ml-3">
                           <p class="text-gray-900 whitespace-no-wrap">
@@ -136,6 +131,7 @@
                       >
                         <button
                           class="text-indigo-700 text-sm rounded py-2 px-4 border border-transparent font-medium hover:text-white hover:bg-indigo-700"
+                          @click="modifier(demande.nom)"                        
                         >
                           <i class="fas fa-edit mr-2"></i>Modifier
                         </button>
@@ -257,10 +253,35 @@
         </div>
       </div>
     </div>
+    <Modal
+      :firstButton="{
+        text: 'Accepter',
+        onClick: () => {
+          return;
+        },
+      }"
+      :secondButton="{
+        text: 'Refuser',
+        onClick: () => {
+          return;
+        },
+      }"
+      :isOpen="isOpen"
+    >
+      <ModalDemande v-if="modal1"  :demande="{}" />
+      <ModalDemandeModif v-if="modal2"  :demande="{}" />
+
+    </Modal>
   </div>
 </template>
 
-<script setup lang="ts">import { ref } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
+import Modal from "../../modal/Modal.vue";
+import ModalDemande from "./modal-demande/ModalDemande.vue";
+import ModalDemandeModif from "./modal-demande/ModalDemandeModif.vue";
+import { useModal } from "../../../composables/useModal";
+const { openModal, isOpen } = useModal();
 
 let supprimerNote = false;
 let msg = " Êtes-vous sûr de vouloir supprimer le volontaire ";
@@ -287,18 +308,31 @@ function prev() {
   }
 }
 let msgSupp = "";
-function supprimer(nom: string) {
-  msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
-  supprimerNote = !supprimerNote;
-}
-function Confirmersupprimer() {
-  supprimerNote = !supprimerNote;
-  msgSupp = "Le volontaire a été supprimé avec succés";
-  NotifSucc = true;
-}
+
 function closeSuccess() {
   NotifSucc = !NotifSucc;
 }
+const modal1=ref(false);
+const modal2=ref(false);
+function supprimer(nom: string) {
+  console.log("hello");
+  modal1.value=true;
+  modal2.value=false;
+  openModal();
+  
+  /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
+  supprimerNote = !supprimerNote;*/
+}
+
+function modifier() {
+  modal2.value=true;
+  modal1.value=false;
+  openModal();
+  
+
+}
+
+
 </script>
 
 <style scoped>
