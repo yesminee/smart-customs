@@ -4,6 +4,7 @@ import SignUp from "../views/auth/SignUp.vue";
 import DRD from "../views/DRD/DRD.vue";
 import BFC from "../views/BFC/BFC.vue";
 import Magasin from "../views/utilisateur/Magasin.vue";
+import AjouterDemande from "../views/utilisateur/Ajouter.vue";
 const history = createWebHistory();
 const routes = [
   { path: "/", component: Login },
@@ -12,6 +13,7 @@ const routes = [
   { path: "/DRD", component: DRD },
   { path: "/BFC", component: BFC },
   { path: "/magasin", component: Magasin },
+  { path: "/ajouterDemande", component: AjouterDemande },
 ];
 const router = createRouter({ history, routes });
 
