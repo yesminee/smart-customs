@@ -102,27 +102,7 @@ export const loginSchema = {
         options: { min: MIN_CIN_LENGTH },
       },
     },
-    origin: {
-      optional: true,
-      custom: {
-        options: (value, { req }) => {
-          if (req.body.origin) {
-            /* origin :0 agent de sousse
-               origin : 1 agent de sfax
-               origin : 2 agent de tunis
-            */
-
-            const origins = [0, 1, 2];
-            if (!origins.includes(req.body.origin)) {
-              throw new Error(`Origins must be either one of ${origins}`);
-            }
-            return value;
-          }
-          return true;
-        },
-      },
-    },
-  };
+  }
   /**
  * PUT /api/v1/users
  */

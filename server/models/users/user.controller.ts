@@ -1,15 +1,18 @@
 const express = require('express');
-const { checkSchema } = require('express-validator');
-const {
+import { checkSchema } from 'express-validator';
+import {
     createUserSchema,
     loginSchema,
-    updateSchema
-}= require('./user.validation');
+    updateUserSchema,
+}from './user.validation';
 
 const router = express.Router();
-import {authenticate, registration} from './user.service';
+import {authenticate, registration, getAllUsers} from './user.service';
 
 import checkSchemaErrors from '../../error/schema-errors';
+import { authorize } from '../../middlewares/authorize';
+import authMiddleware from '../../middlewares/auth.middleware';
+import headerToTokenMiddleware from '../../middlewares/headerToToken.middleware';
 
 /**
  * Login a new user
@@ -40,6 +43,11 @@ import checkSchemaErrors from '../../error/schema-errors';
     .then(result => res.json(result))
     .catch(err => next(err));
  }
+ function all(req,res,next) {
+   getAllUsers()
+   .then(result => res.json(result))
+   .catch(err => next(err));
+ }
 /**
  *  a new user
  * @param req
@@ -65,5 +73,16 @@ router.post('/signup', checkSchema(createUserSchema), checkSchemaErrors, signup)
  * Update a new user
  */
  router.put('/', checkSchema(updateUserSchema), checkSchemaErrors, signup);
+
+ /**
+ * GET /api/v1/user/
+ * Get list  all users
+ */
+  router.get('/',
+  headerToTokenMiddleware,
+  authMiddleware,
+  authorize(['DRD']),
+  all);
+
 
 export default router;

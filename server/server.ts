@@ -18,7 +18,8 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 
-app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/user', authRouter);
+
 
 //DB configuration
 import  db from './config/keys';

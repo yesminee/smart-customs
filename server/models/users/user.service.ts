@@ -39,6 +39,7 @@ export const registration = async ({
     //if ((await isEmailExist(req.body.email)) === false) throw 403;
     let isEmailUsed = await User.findOne({ email });
     if (isEmailUsed) {
+      console.log(i18n.__('user.authorization.email_used'));
         throw new AuthenticationError(i18n.__('user.authorization.email_used'));
     }
     let salt = Bcrypt.genSaltSync(8);
@@ -57,6 +58,7 @@ export const registration = async ({
     await newUser.save();
   
     const addedUser = await User.findOne({ email });
+    console.log(i18n.__('user.user_not_found'));
     if (!addedUser) {
         throw new AuthenticationError(i18n.__('user.user_not_found'));
     }
@@ -77,6 +79,10 @@ export const registration = async ({
         .then((res) => console.log("res " + res))
         .catch((err) => console.log("error " + err));
         */
-       console.log(addedUser)
     return { data: { token, user: addedUser } };
 };
+export const getAllUsers = async () => {
+const Users = await User.find();
+console.log(Users)
+ return Users;
+}

@@ -1,10 +1,10 @@
-const i18n = require('i18n');
+import  i18n from 'i18n';
 
 i18n.configure({
   locales: ['fr'],
   defaultLocale: 'fr',
   objectNotation: true,
-  directory: `${__dirname}/../../locales`,
+  directory: '../../locales',
 });
 
 export default i18n;
