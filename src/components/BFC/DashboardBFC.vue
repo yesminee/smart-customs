@@ -3,51 +3,6 @@
     <body class="antialiased font-sans">
       <div class="container mx-auto w-screen md:w-5/6">
         <div class="p-8">
-          <div class="my-2 flex sm:flex-row flex-col justify-between">
-            <div class="flex items-center">
-              <div class="flex flex-row mb-1 sm:mb-0">
-                <div class="relative">
-                  <select
-                    class="appearance-none rounded h-full border sm:rounded-r-none sm:border-r-0 block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-indigo-500"
-                  >
-                    <option>tous</option>
-                    <optgroup label="Etat">
-                      <option>Accepté</option>
-                      <option>En attente</option>
-                      <option>Refusé</option>
-                    </optgroup>
-                    <optgroup label="Nom magasin">
-                      <option>FPS</option>
-                      <option>FPSE</option>
-                      <option>Monitorat</option>
-                    </optgroup>
-                  </select>
-                  <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                  >
-                    <svg
-                      class="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="justify-self-end">
-              <router-link to="/ajouterDemande">
-                <button
-                  class="text-indigo-700 text-sm rounded py-2 px-4 border border-indigo-700 font-medium hover:text-white focus:outline-none hover:bg-indigo-700"
-                >
-                  <i class="fas fa-user-plus mr-2"></i>Ajouter
-                </button></router-link
-              >
-            </div>
-          </div>
           <div class="overflow-x-auto shadow mt-4">
             <div
               class="inline-block min-w-full shadow rounded-lg overflow-hidden"
@@ -84,11 +39,15 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <div class="flex items-center">
-                     
-                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700" @click="supprimer(demande.nom)"></i>
+                        <i
+                          class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700 cursor-pointer"
+                          @click="supprimer(demande.nom)"
+                        ></i>
 
                         <div class="ml-3">
-                          <p class="text-gray-900 whitespace-no-wrap font-semibold">
+                          <p
+                            class="text-gray-900 whitespace-no-wrap font-semibold"
+                          >
                             {{ demande.nom }}
                           </p>
                         </div>
@@ -98,7 +57,7 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <p class="text-gray-900 text-center whitespace-no-wrap">
-                        {{ demande.date}}
+                        {{ demande.date }}
                       </p>
                     </td>
 
@@ -115,8 +74,8 @@
                             demande.etat == 'Accepté'
                               ? 'bg-green-300'
                               : demande.etat == 'Refusé'
-                              ?'bg-red-500' : 'bg-orange-400'
-                              
+                              ? 'bg-red-500'
+                              : 'bg-orange-400'
                           "
                         ></span>
                         <span class="relative">{{ demande.etat }}</span>
@@ -131,7 +90,7 @@
                       >
                         <button
                           class="text-indigo-700 text-sm rounded py-2 px-4 border border-transparent font-medium hover:text-white hover:bg-indigo-700"
-                        @click="modifier(demande.nom)"
+                          @click="modifier(demande.nom)"
                         >
                           <i class="fas fa-trash mr-2"></i>Modifier
                         </button>
@@ -280,9 +239,8 @@
       }"
       :isOpen="isOpen"
     >
-      <ModalDemande v-if="modal1"  :demande="{}" />
-      <ModalDemandeModif v-if="modal2"  :demande="{}" />
-
+      <ModalDemande v-if="modal1" />
+      <ModalDemandeModif @confirmer="confirmer" v-if="modal2" :index="index" />
     </Modal>
   </div>
 </template>
@@ -292,27 +250,32 @@ import { useModal } from "../../composables/useModal";
 import Modal from "../modal/Modal.vue";
 import ModalDemande from "./modal-demande/ModalDemande.vue";
 import ModalDemandeModif from "./modal-demande/ModalDemandeModif.vue";
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 let supprimerNote = false;
 let msg = " Êtes-vous sûr de vouloir supprimer le volontaire ";
 let num = 5;
 let x = 0;
 let y = 0;
-const modal1=ref(false);
-const modal2=ref(false);
+const modal1 = ref(false);
+const modal2 = ref(false);
 let NotifSucc = false;
-const route = useRoute()
+const route = useRoute();
 
-const demandesA  = ref([
-  {nom:"Vera Carpenter",date: "Monitorat", etat:"Accepté"},
-  {nom:"Malek Slokom",date: "FPS", etat:"Refusé"},
-  {nom:"Ali Ben zaid",date: "Monitorat", etat:"En attente"},
-  {nom:"Manel",date: "FS", etat:"Accepté"},
+const demandesA = ref([
+  { nom: "Vera Carpenter", date: "Monitorat", etat: "En attente" },
+  { nom: "Malek Slokom", date: "FPS", etat: "En attente" },
+  { nom: "Ali Ben zaid", date: "Monitorat", etat: "En attente" },
+  { nom: "Manel", date: "FS", etat: "Accepté" },
 ]);
 
-const demandes= computed(()=>demandesA.value.filter((demande)=> demande.etat==route.params.etat))
+const demandes = computed(() =>
+  demandesA.value.filter((demande) => demande.etat == "En attente")
+);
 
+const confirmer = () => {
+  demandesA.value[index.value].etat = "Accepté";
+};
 const { openModal, isOpen } = useModal();
 
 function suiv() {
@@ -329,22 +292,23 @@ function prev() {
 }
 
 let msgSupp = "";
+const index = ref(-1);
 function supprimer(nom: string) {
   console.log("hello");
-  modal1.value=true;
-  modal2.value=false;
+  modal1.value = true;
+  modal2.value = false;
   openModal();
-  
+
   /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
   supprimerNote = !supprimerNote;*/
 }
 
-function modifier() {
-  modal2.value=true;
-  modal1.value=false;
+function modifier(nom: string) {
+  modal2.value = true;
+  modal1.value = false;
+  index.value = demandes.value.findIndex((demande) => demande.nom == nom);
+  console.log(index.value);
   openModal();
-  
-
 }
 
 function Confirmersupprimer() {

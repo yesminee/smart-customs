@@ -2,7 +2,9 @@
   <div>
     <div class="w-full h-full overflow">
       <div class="flex justify-center items-center">
-        <div class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded">
+        <div
+          class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded"
+        >
           <div class="flex flex-wrap">
             <div class="w-full">
               <ul
@@ -36,20 +38,6 @@
                     }"
                   >
                     <i class="fa fa-medkit text-base mr-1"></i> Demande
-                  </a>
-                </li>
-                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
-                  <a
-                    class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
-                    v-on:click="toggleTabs(3)"
-                    v-bind:class="{
-                      'text-indigo-700 text-sm font-medium bg-white':
-                        openTab !== 3,
-                      'text-white text-sm font-medium bg-indigo-700':
-                        openTab === 3,
-                    }"
-                  >
-                    <i class="far fa-eye text-base mr-1"></i> Etat de la demande
                   </a>
                 </li>
               </ul>
@@ -157,16 +145,26 @@
                             <option
                               value="Société à responsabilité limitée"
                               selected
-                            >Société à responsabilité limitée</option>
+                            >
+                              Société à responsabilité limitée
+                            </option>
                             <option
                               value="Société unipersonnelle à responsabilité limitée"
-                            >Société unipersonnelle à responsabilité limitée</option>
-                            <option value="Société anonyme">Société anonyme</option>
-                            <option value="Société en nom collectif">Société en nom collectif</option>
-                            <option
-                              value="Société en commandite simple"
-                            >Société en commandite simple</option>
-                            <option value="Société en participation">Société en participation</option>
+                            >
+                              Société unipersonnelle à responsabilité limitée
+                            </option>
+                            <option value="Société anonyme">
+                              Société anonyme
+                            </option>
+                            <option value="Société en nom collectif">
+                              Société en nom collectif
+                            </option>
+                            <option value="Société en commandite simple">
+                              Société en commandite simple
+                            </option>
+                            <option value="Société en participation">
+                              Société en participation
+                            </option>
                           </select>
                         </div>
                         <div>
@@ -180,7 +178,9 @@
                         </div>
                         <div class="flex w-full space-x-2">
                           <div class="w-1/2">
-                            <label for="dateDebAct" class="text-gray-600">Date de début d'activité</label>
+                            <label for="dateDebAct" class="text-gray-600"
+                              >Date de début d'activité</label
+                            >
                             <input
                               type="date"
                               id="dateDebAct"
@@ -192,7 +192,9 @@
                           </div>
                           <br />
                           <div class="w-1/2">
-                            <label for="datePub" class="text-gray-600">Date de publication</label>
+                            <label for="datePub" class="text-gray-600"
+                              >Date de publication</label
+                            >
                             <div class="relative"></div>
                             <input
                               type="date"
@@ -282,7 +284,6 @@
                         block: openTab === 2,
                       }"
                     >
-                    
                       <form class="space-y-8" action="#" method="POST">
                         <div class="mt-4">
                           <div class="flex w-full space-x-2">
@@ -361,7 +362,8 @@
                           <label
                             for="dateLimteProtectionCivil"
                             class="text-gray-600"
-                          >Date limite de la protection civile</label>
+                            >Date limite de la protection civile</label
+                          >
                           <div class="relative"></div>
                           <input
                             type="date"
@@ -373,31 +375,21 @@
                           />
                         </div>
 
-                        <label class="form-label" for="documents">Documents</label>
+                        <label class="form-label" for="documents"
+                          >Documents</label
+                        >
                         <div class="flex flex-wrap">
-                          <div class="p-1 w-1/3" v-for="image in doc" :key="image">
+                          <div
+                            class="p-1 w-1/3"
+                            v-for="image in doc"
+                            :key="image"
+                          >
                             <a target="_blank" :href="image">
                               <img :src="image" alt="Fissure in Sandstone" />
                             </a>
                           </div>
                         </div>
                       </form>
-                    </div>
-                    <div
-                      v-bind:class="{
-                        hidden: openTab !== 3,
-                        block: openTab === 3,
-                      }"
-                      class="flex justify-center pr-32"
-                    >
-                      <Steps
-                        :steps="[
-                          { nom: 'Create Account', statut: 'terminé' },
-                          { nom: 'Profile Information', statut: 'en cours' },
-                          { nom: 'Business Information', statut: 'en attente' },
-                          { nom: 'Theme', statut: 'refusé' },
-                        ]"
-                      />
                     </div>
                   </div>
                 </div>
@@ -417,7 +409,13 @@ import { ref } from "vue";
 import Steps from "../../steps/Steps.vue";
 const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
-const doc = ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
+const doc = ref([
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+]);
 const add = ref({
   nom: "nom aifaoui",
   prenom: "mohamed",
@@ -438,7 +436,8 @@ const add = ref({
   numContractAssurance: "201509200052",
   SuperficieMagasin: "1200m²",
   typeMagasin: "type3",
-  descMagasin: "unite de stockage et des flux douaniers pour differentes marchandises",
+  descMagasin:
+    "unite de stockage et des flux douaniers pour differentes marchandises",
   capacite: "3T , palans manuels 2.2T",
   equipement: "2 Chariots élévateurs, 2 palans manuels ",
   dateLimteProtectionCivil: "30/01/2022",
@@ -467,7 +466,4 @@ const openTab = ref(1);
 function toggleTabs(tabNumber: any) {
   openTab.value = tabNumber;
 }
-
-
-
 </script>
