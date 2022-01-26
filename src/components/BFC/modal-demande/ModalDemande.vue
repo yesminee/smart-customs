@@ -10,7 +10,7 @@
               <ul
                 class="flex items-stretch py-2 mb-0 list-none flex-wrap-none flex-row cursor-pointer"
               >
-                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
+                <li class="-mb-px mr-2 last:mr-0 w-1/2 text-center">
                   <a
                     class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
                     v-on:click="toggleTabs(1)"
@@ -26,7 +26,7 @@
                   </a>
                 </li>
 
-                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
+                <li class="-mb-px mr-2 last:mr-0 w-1/2 text-center">
                   <a
                     class="text-xs font-bold uppercase h-full px-5 py-3 shadow-sm rounded block leading-normal"
                     v-on:click="toggleTabs(2)"

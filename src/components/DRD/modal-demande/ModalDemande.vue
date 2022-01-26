@@ -10,7 +10,7 @@
               <ul
                 class="flex items-stretch py-2 mb-0 list-none flex-wrap-none flex-row cursor-pointer"
               >
-                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
+                <li class="-mb-px mr-2 last:mr-0 w-1/2 text-center">
                   <a
                     class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
                     v-on:click="toggleTabs(1)"
@@ -26,7 +26,7 @@
                   </a>
                 </li>
 
-                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
+                <li class="-mb-px mr-2 last:mr-0 w-1/2 text-center">
                   <a
                     class="text-xs font-bold uppercase h-full px-5 py-3 shadow-sm rounded block leading-normal"
                     v-on:click="toggleTabs(2)"
@@ -417,7 +417,7 @@ const doc = ref([
   "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
 ]);
 const add = ref({
-   nom: "nom aifaoui",
+  nom: "nom aifaoui",
   prenom: "mohamed",
   CIN: "02039797",
   numeroTel: "22889141",
@@ -426,7 +426,7 @@ const add = ref({
   capitalSocial: "100.000 dt",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "23, rue mosaddirin zone indistruelle rades, mileha",
-  adresseDuMagasin:"23, rue mosaddirin",
+  adresseDuMagasin: "23, rue mosaddirin",
   dateDebAct: "2012/09/14",
   datePub: "2012/09/18",
   actPrincipale: "Transport Maritime",
@@ -437,7 +437,8 @@ const add = ref({
   numContractAssurance: "201509200052",
   SuperficieMagasin: "1200m²",
   typeMagasin: "type3",
-  descMagasin: "unite de stockage et des flux douaniers pour differentes marchandises",
+  descMagasin:
+    "unite de stockage et des flux douaniers pour differentes marchandises",
   capacite: "3T , palans manuels 2.2T",
   equipement: "2 Chariots élévateurs, 2 palans manuels ",
   dateLimteProtectionCivil: "30/01/2022",
@@ -452,7 +453,7 @@ const user = ref({
   capitalSocial: "",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "",
-  adresseDuMagasin:"23, rue mosaddirin",
+  adresseDuMagasin: "23, rue mosaddirin",
 
   dateDebAct: "",
   datePub: "",
