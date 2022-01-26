@@ -1,8 +1,12 @@
-import  AppError from './AppError';
+import AppError from "./AppError";
 
 class AuthenticationError extends AppError {
   constructor(message) {
-    super(401, 'INVALID_CREDENTIALS', message || 'Username or password is incorrect.');
+    super(
+      401,
+      "INVALID_CREDENTIALS",
+      message || "Username or password is incorrect."
+    );
   }
 }
 

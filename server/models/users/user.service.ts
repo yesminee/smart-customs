@@ -4,12 +4,13 @@ const { User }= db;
 import jwt from "jsonwebtoken";
 import Bcrypt from "bcryptjs";
 import AuthenticationError from '../../error/AuthenticationError';
+import userModel from './user.model';
 
 export const authenticate = async ({
-    email, password, origin,
+    email, motDePasse,
   }) => {
-    let foundUser = await User.findOne({ email: email, origin: origin });
-    if (!foundUser || !Bcrypt.compareSync(password, foundUser.password)) {
+    let foundUser = await User.findOne({ email: email });
+    if (!foundUser || !Bcrypt.compareSync(motDePasse, foundUser.password)) {
         throw new AuthenticationError(i18n.__('user.authentication.invalid_credentials'));
     }
     let token = jwt.sign(
@@ -23,7 +24,7 @@ export const authenticate = async ({
         email: foundUser.email,
         nom: foundUser.nom,
         prenom: foundUser.prenom,
-        phone: foundUser.phone,
+        numeroTel: foundUser.phone,
         role: foundUser.role,
         origin: foundUser.origin,
       };
@@ -34,29 +35,30 @@ export const authenticate = async ({
       return { data: { accessToken, user: foundUser} };
 };
 export const registration = async ({
-    email, nom, prenom, password, origin, phone, CIN
+    email, nom, prenom, motDePasse, numeroTel, cin
   }) => {
     //if ((await isEmailExist(req.body.email)) === false) throw 403;
     let isEmailUsed = await User.findOne({ email });
     if (isEmailUsed) {
+      console.log(i18n.__('user.authorization.email_used'));
         throw new AuthenticationError(i18n.__('user.authorization.email_used'));
     }
     let salt = Bcrypt.genSaltSync(8);
-    password = Bcrypt.hashSync(password, salt);
+    motDePasse = Bcrypt.hashSync(motDePasse, salt);
   
     let newUser = new User({
       email: email.toLowerCase(),
       nom,
       prenom,
-      password,
+      motDePasse,
       salt,
-      origin,
-      phone,
-      CIN
+      numeroTel,
+      cin
     });
     await newUser.save();
   
     const addedUser = await User.findOne({ email });
+    console.log(i18n.__('user.user_not_found'));
     if (!addedUser) {
         throw new AuthenticationError(i18n.__('user.user_not_found'));
     }
@@ -77,6 +79,28 @@ export const registration = async ({
         .then((res) => console.log("res " + res))
         .catch((err) => console.log("error " + err));
         */
-       console.log(addedUser)
     return { data: { token, user: addedUser } };
 };
+export const getAllUsers = async () => {
+const Users = await User.find();
+console.log(Users)
+ return Users;
+}
+export const updateUserData = async({
+  id, email, nom, prenom, numeroTel, cin}) =>{
+    const user = await User.findOne({_id:id});
+    if (!user) {
+      throw new AuthenticationError(i18n.__('user.user_not_found'));
+    }
+    Object.assign(user, {
+      email,
+      nom,
+      prenom,
+      numeroTel,
+      cin
+    });
+  
+    await user.save();
+  
+    return user;
+  }

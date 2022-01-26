@@ -192,10 +192,7 @@
       class="absolute h-screen w-screen top-0 flex items-center justify-center"
       v-if="supprimerNote"
     >
-      <div
-        class="fixed h-full w-full bg-gray-600 opacity-25"
-        @click="supprimer('nom')"
-      ></div>
+      <div class="fixed h-full w-full bg-gray-600 opacity-25"></div>
       <div class="flex bg-indigo-200 max-w-sm mb-4">
         <div class="w-16 bg-indigo-600">
           <div class="p-4">
@@ -274,10 +271,31 @@
         </div>
       </div>
     </div>
+    <Modal
+      :firstButton="{
+        text: 'Accepter',
+        onClick: () => {
+          return;
+        },
+      }"
+      :secondButton="{
+        text: 'Refuser',
+        onClick: () => {
+          return;
+        },
+      }"
+      :isOpen="isOpen"
+    >
+      <ModalDemande :demande="{}" />
+    </Modal>
   </div>
 </template>
 
 <script setup lang="ts">
+import { useModal } from "../../composables/useModal";
+import Modal from "../modal/Modal.vue";
+import ModalDemande from "./modal-demande/ModalDemande.vue";
+
 let supprimerNote = false;
 let msg = " Êtes-vous sûr de vouloir supprimer le volontaire ";
 let num = 5;
@@ -290,6 +308,9 @@ let tab = [
   ["Ali Ben zaid", "FPS", "Oui"],
   ["Manel", "Slokom", "Non"],
 ];
+
+const { openModal, isOpen } = useModal();
+
 function suiv() {
   if (y < tab.length) {
     y += 1;
@@ -302,10 +323,12 @@ function prev() {
     x -= 5;
   }
 }
+
 let msgSupp = "";
 function supprimer(nom: string) {
-  msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
-  supprimerNote = !supprimerNote;
+  openModal();
+  /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
+  supprimerNote = !supprimerNote;*/
 }
 function Confirmersupprimer() {
   supprimerNote = !supprimerNote;

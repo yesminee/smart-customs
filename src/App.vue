@@ -5,6 +5,7 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { useStore } from "vuex";
+import Modal from "./components/modal/Modal.vue";
 
 const store = useStore();
 

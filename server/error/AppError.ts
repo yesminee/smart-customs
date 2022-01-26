@@ -1,27 +1,22 @@
 class AppError extends Error {
-  target: String;
-  source:any;
-  code:any;
-  status:any;
-  constructor( code, message, target) {
+  code: string;
+  status: number;
+  source: any;
+  constructor( status, code, message) {
   // Calling parent constructor of base Error class.
     super(message);
 
-    this.target = target || 'common';
-
-
     const constructorName = this.constructor.name;
-
+    this.status = status || 500;
     this.code = code || constructorName.toLowerCase();
 
     Error.captureStackTrace(this, this.constructor);
   }
-
   toJson() {
     return {
       code: this.code,
-      target: this.target,
       message: this.message,
+      source: this.source,
     };
   }
 }

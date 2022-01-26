@@ -5,7 +5,7 @@ export default async (req, res, next) => {
   if (req.token != "null" && typeof req.token != "undefined") {
     const decoded = jwt.decode(req.token);
     // @ts-ignore
-    req.user = await user.findOne({ _id: decoded._id });
+    req.user = await user.findOne({ _id: ( decoded ? decoded.sub : -1) });
   }
   next();
 };
