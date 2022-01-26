@@ -3,17 +3,6 @@
     <body class="antialiased font-sans">
       <div class="container mx-auto w-screen md:w-5/6">
         <div class="p-8">
-          <div class="my-2 flex sm:flex-row flex-col justify-end">
-            <div class="justify-self-end">
-              <router-link to="/ajouterDemande">
-                <button
-                  class="text-indigo-700 text-sm rounded py-2 px-4 border border-indigo-700 font-medium hover:text-white focus:outline-none hover:bg-indigo-700"
-                >
-                  <i class="fas fa-user-plus mr-2"></i>Ajouter
-                </button></router-link
-              >
-            </div>
-          </div>
           <div class="overflow-x-auto shadow mt-4">
             <div
               class="inline-block min-w-full shadow rounded-lg overflow-hidden"
