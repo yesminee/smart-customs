@@ -380,13 +380,29 @@
                           >Documents</label
                         >
                         <div class="flex flex-wrap">
-                          <div
-                            class="p-1 w-1/3"
-                            v-for="image in doc"
-                            :key="image"
-                          >
-                            <a target="_blank" :href="image">
-                              <img :src="image" alt="Fissure in Sandstone" />
+                          <div class="p-1 w-1/3">
+                            <a target="_blank">
+                              <img src="../../../assets/documents/IMG_1.jpg" />
+                            </a>
+                          </div>
+                          <div class="p-1 w-1/3">
+                            <a target="_blank">
+                              <img src="../../../assets/documents/IMG_2.jpg" />
+                            </a>
+                          </div>
+                          <div class="p-1 w-1/3">
+                            <a target="_blank">
+                              <img src="../../../assets/documents/IMG_3.jpg" />
+                            </a>
+                          </div>
+                          <div class="p-1 w-1/3">
+                            <a target="_blank">
+                              <img src="../../../assets/documents/IMG_4.jpg" />
+                            </a>
+                          </div>
+                          <div class="p-1 w-1/3">
+                            <a target="_blank">
+                              <img src="../../../assets/documents/IMG_5.jpg" />
                             </a>
                           </div>
                         </div>
@@ -409,13 +425,15 @@ import dayjs from "dayjs";
 import { ref } from "vue";
 const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
+
 const doc = ref([
-  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
-  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
-  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
-  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
-  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "../../../assets/documents/IMG_1",
+  "../../../assets/documents/IMG_2",
+  "../../../assets/documents/IMG_3",
+  "../../../assets/documents/IMG_4",
+  "../../../assets/documents/IMG_5",
 ]);
+
 const add = ref({
   nom: "nom aifaoui",
   prenom: "mohamed",
