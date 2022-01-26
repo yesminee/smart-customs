@@ -2,7 +2,8 @@ const express = require('express');
 const { checkSchema } = require('express-validator');
 const {
     createUserSchema,
-    loginSchema
+    loginSchema,
+    updateSchema
 }= require('./user.validation');
 
 const router = express.Router();
@@ -58,5 +59,11 @@ router.post('/login', checkSchema(loginSchema), checkSchemaErrors, login);
  * Register a new user
  */
 router.post('/signup', checkSchema(createUserSchema), checkSchemaErrors, signup);
+
+/**
+ * PUT /api/v1/user/
+ * Update a new user
+ */
+ router.put('/', checkSchema(updateUserSchema), checkSchemaErrors, signup);
 
 export default router;

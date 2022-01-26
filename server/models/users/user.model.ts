@@ -29,7 +29,15 @@ const UserSchema: Mongoose.Schema = new Mongoose.Schema({
   },
   origin: {
     type: Number,
-  },
+  }
+},
+{
+  timestamps: {
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+},
+toJSON: { virtuals: true },
+toObject: { virtuals: true },
 });
 
 export interface IUser extends Mongoose.Document {

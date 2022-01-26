@@ -123,3 +123,43 @@ export const loginSchema = {
       },
     },
   };
+  /**
+ * PUT /api/v1/users
+ */
+
+export const updateUserSchema = {
+  email: {
+    exists: {
+      errorMessage: i18n.__('user.validation.required_email'),
+    },
+    isEmail: {
+      errorMessage: i18n.__('user.validation.invalid_email'),
+    },
+  },
+  prenom: {
+    exists: {
+      errorMessage: i18n.__('user.validation.required_firstname'),
+    },
+    isLength: {
+      errorMessage: i18n.__('user.validation.firstname_length'),
+      options: { min: 1, max: 45 },
+    },
+  },
+  nom: {
+    exists: {
+      errorMessage: i18n.__('user.validation.required_lastname'),
+    },
+    isLength: {
+      errorMessage: i18n.__('user.validation.lastname_length'),
+      options: { min: 1, max: 45 },
+    },
+  },
+  phone: {
+    exists: {
+      errorMessage: i18n.__('user.validation.required_phone_number'),
+    },
+    isMobilePhone: {
+      errorMessage: i18n.__('user.validation.invalid_phone_number'),
+    },
+  },
+};
