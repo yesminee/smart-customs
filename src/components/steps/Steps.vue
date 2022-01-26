@@ -16,9 +16,11 @@
           ]"
         >
           <div
+            class="flex items-center justify-center"
             v-if="step.statut === 'terminé'"
-            class="h-2 w-2 bg-indigo-100 rounded-full"
-          ></div>
+          >
+            <i class="fas fa-check text-indigo-100"></i>
+          </div>
           <div
             v-if="step.statut === 'en cours'"
             class="h-2 w-2 bg-indigo-700 rounded-full"

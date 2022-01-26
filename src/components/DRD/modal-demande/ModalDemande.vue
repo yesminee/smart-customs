@@ -256,7 +256,7 @@
                           <div class="w-1/2">
                             <MDBInput
                               id="NomSociteAssurance"
-                              label="Nom de socité d'assurance"
+                              label="Nom de société d'assurance"
                               type="text"
                               class="input w-full bg-white"
                               v-model="add.NomSociteAssurance"
@@ -407,7 +407,6 @@
 import { MDBInput } from "mdb-vue-ui-kit";
 import dayjs from "dayjs";
 import { ref } from "vue";
-import Steps from "../../steps/Steps.vue";
 const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
 const doc = ref([

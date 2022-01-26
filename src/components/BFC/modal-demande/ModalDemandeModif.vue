@@ -2,7 +2,7 @@
   <form class="bg-white p-8 rounded w-96">
     <div class="form-group mb-3">
       <div>
-        <label for="">Documents validé</label>
+        <label for="">Valider Demande</label>
         <select
           class="input flex-shrink-0 flex-1 h-9 form-select"
           v-model="valide"

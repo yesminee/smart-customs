@@ -5,3 +5,13 @@ dist-ssr
 *.local
 dist-server
 package-lock.json
+
+ajout site douane (integration rubrique)
+registre national des entreprises RNE (mégrine)
+
+perspectives : chaque formulaire corresponds a une fiche (kif france-visas)
+               liste documents générales: chaque document un formulaire w iwali checked a part 7ata yekmel doussi (contrat assurance, 3e9d melkeya, if kré contrat l kré, ta3rif l'entreprise ...)
+               cron jobs alerts kif toufa ay date f ay contrat lel les 2 user w agent
+               récolte des données au fur et a mesure pour améliorer un systéme d'intelligence artificielle : ceci est une base pour le futur
+               connection sinda ?
+               notifications

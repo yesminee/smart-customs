@@ -398,7 +398,7 @@
                                 : ''
                             "
                             id="NomSociteAssurance"
-                            label="Nom de socité d'assurance"
+                            label="Nom de société d'assurance"
                             type="text"
                             class="input w-full bg-white"
                             v-model="add.NomSociteAssurance"

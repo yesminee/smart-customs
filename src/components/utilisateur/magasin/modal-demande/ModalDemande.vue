@@ -2,7 +2,9 @@
   <div>
     <div class="w-full h-full overflow">
       <div class="flex justify-center items-center">
-        <div class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded">
+        <div
+          class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded"
+        >
           <div class="flex flex-wrap">
             <div class="w-full">
               <ul
@@ -110,7 +112,6 @@
                               label="Numéro de téléphone"
                               type="text"
                               class="input w-full bg-white"
-                      
                               v-model="add.numeroTel"
                             ></MDBInput>
                           </div>
@@ -156,16 +157,26 @@
                             <option
                               value="Société à responsabilité limitée"
                               selected
-                            >Société à responsabilité limitée</option>
+                            >
+                              Société à responsabilité limitée
+                            </option>
                             <option
                               value="Société unipersonnelle à responsabilité limitée"
-                            >Société unipersonnelle à responsabilité limitée</option>
-                            <option value="Société anonyme">Société anonyme</option>
-                            <option value="Société en nom collectif">Société en nom collectif</option>
-                            <option
-                              value="Société en commandite simple"
-                            >Société en commandite simple</option>
-                            <option value="Société en participation">Société en participation</option>
+                            >
+                              Société unipersonnelle à responsabilité limitée
+                            </option>
+                            <option value="Société anonyme">
+                              Société anonyme
+                            </option>
+                            <option value="Société en nom collectif">
+                              Société en nom collectif
+                            </option>
+                            <option value="Société en commandite simple">
+                              Société en commandite simple
+                            </option>
+                            <option value="Société en participation">
+                              Société en participation
+                            </option>
                           </select>
                         </div>
                         <div>
@@ -179,24 +190,26 @@
                         </div>
                         <div class="flex w-full space-x-2">
                           <div class="w-1/2">
-                            <label for="dateDebAct" class="text-gray-600">Date de début d'activité</label>
+                            <label for="dateDebAct" class="text-gray-600"
+                              >Date de début d'activité</label
+                            >
                             <input
                               type="string"
                               id="dateDebAct"
                               v-model="add.dateDebAct"
-                            
                               class="bg-gray-50 border border-gray-300 text-gray-500 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
                           </div>
                           <br />
                           <div class="w-1/2">
-                            <label for="datePub" class="text-gray-600">Date de publication</label>
+                            <label for="datePub" class="text-gray-600"
+                              >Date de publication</label
+                            >
                             <div class="relative"></div>
                             <input
                               type="string"
                               id="datePub"
                               v-model="add.datePub"
-                            
                               class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
                           </div>
@@ -251,7 +264,7 @@
                           <div class="w-1/2">
                             <MDBInput
                               id="NomSociteAssurance"
-                              label="Nom de socité d'assurance"
+                              label="Nom de société d'assurance"
                               type="text"
                               class="input w-full bg-white"
                               v-model="add.NomSociteAssurance"
@@ -279,7 +292,6 @@
                         block: openTab === 2,
                       }"
                     >
-                    
                       <form class="space-y-8" action="#" method="POST">
                         <div class="mt-4">
                           <div class="flex w-full space-x-2">
@@ -356,7 +368,6 @@
                           </div>
                         </div>
                         <div>
-                       
                           <div class="relative"></div>
                           <MDBInput
                             type="text"
@@ -367,9 +378,15 @@
                           ></MDBInput>
                         </div>
 
-                        <label class="form-label" for="documents">Documents</label>
+                        <label class="form-label" for="documents"
+                          >Documents</label
+                        >
                         <div class="flex flex-wrap">
-                          <div class="p-1 w-1/3" v-for="image in doc" :key="image">
+                          <div
+                            class="p-1 w-1/3"
+                            v-for="image in doc"
+                            :key="image"
+                          >
                             <a target="_blank" :href="image">
                               <img :src="image" alt="Fissure in Sandstone" />
                             </a>
@@ -382,14 +399,20 @@
                         hidden: openTab !== 3,
                         block: openTab === 3,
                       }"
-                      class="flex justify-center pr-32"
+                      class="flex justify-center pl-24 pb-8"
                     >
                       <Steps
                         :steps="[
-                          { nom: 'Create Account', statut: 'terminé' },
-                          { nom: 'Profile Information', statut: 'en cours' },
-                          { nom: 'Business Information', statut: 'en attente' },
-                          { nom: 'Theme', statut: 'refusé' },
+                          { nom: 'Documents validés', statut: 'terminé' },
+                          {
+                            nom: 'Demande accepté par la BFC',
+                            statut: 'terminé',
+                          },
+                          {
+                            nom: 'Envoi des documents au chef de station',
+                            statut: 'en cours',
+                          },
+                          { nom: 'Validation finale', statut: 'en attente' },
                         ]"
                       />
                     </div>
@@ -411,9 +434,15 @@ import { ref } from "vue";
 import Steps from "../../../steps/Steps.vue";
 const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
-const doc = ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
+const doc = ref([
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+  "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp",
+]);
 const add = ref({
-   nom: "nom aifaoui",
+  nom: "nom aifaoui",
   prenom: "mohamed",
   CIN: "02039797",
   numeroTel: "22889141",
@@ -422,7 +451,7 @@ const add = ref({
   capitalSocial: "100.000 dt",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "23, rue mosaddirin zone indistruelle rades, mileha",
-  adresseDuMagasin:"23, rue mosaddirin",
+  adresseDuMagasin: "23, rue mosaddirin",
   dateDebAct: "2012/09/14",
   datePub: "2012/09/18",
   actPrincipale: "Transport Maritime",
@@ -433,7 +462,8 @@ const add = ref({
   numContractAssurance: "201509200052",
   SuperficieMagasin: "1200m²",
   typeMagasin: "type3",
-  descMagasin: "unite de stockage et des flux douaniers pour differentes marchandises",
+  descMagasin:
+    "unite de stockage et des flux douaniers pour differentes marchandises",
   capacite: "3T , palans manuels 2.2T",
   equipement: "2 Chariots élévateurs, 2 palans manuels ",
   dateLimteProtectionCivil: "30/01/2022",
@@ -448,7 +478,7 @@ const user = ref({
   capitalSocial: "",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "",
-  adresseDuMagasin:"23, rue mosaddirin",
+  adresseDuMagasin: "23, rue mosaddirin",
 
   dateDebAct: "",
   datePub: "",
@@ -464,7 +494,4 @@ const openTab = ref(1);
 function toggleTabs(tabNumber: any) {
   openTab.value = tabNumber;
 }
-
-
-
 </script>

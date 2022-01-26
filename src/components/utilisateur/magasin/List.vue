@@ -11,27 +11,26 @@
                     class="appearance-none rounded h-full border sm:rounded-r-none sm:border-r-0 block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-indigo-500"
                   >
                     <option>Etat</option>
-                      <option>Accepté</option>
-                      <option>En attente</option>
-                      <option>Refusé</option>
-                
+                    <option>Accepté</option>
+                    <option>En attente</option>
+                    <option>Refusé</option>
                   </select>
                   <div
                     class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
                   >
                     <div
-                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-                  >
-                    <svg
-                      class="fill-current h-4 w-4"
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
+                      class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
                     >
-                      <path
-                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                      />
-                    </svg>
-                  </div>
+                      <svg
+                        class="fill-current h-4 w-4"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -82,10 +81,10 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <div class="flex items-center">
-                        
-                          
-                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700 cursor-pointer" @click="supprimer(demande.nom)"></i>
-                      
+                        <i
+                          class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700 cursor-pointer"
+                          @click="supprimer(demande.nom)"
+                        ></i>
 
                         <div class="ml-3">
                           <p class="text-gray-900 whitespace-no-wrap">
@@ -98,7 +97,7 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <p class="text-gray-900 text-center whitespace-no-wrap">
-                        {{ demande.date}}
+                        {{ demande.date }}
                       </p>
                     </td>
 
@@ -115,8 +114,8 @@
                             demande.etat == 'Accepté'
                               ? 'bg-green-300'
                               : demande.etat == 'Refusé'
-                              ?'bg-red-500' : 'bg-orange-400'
-                              
+                              ? 'bg-red-500'
+                              : 'bg-orange-400'
                           "
                         ></span>
                         <span class="relative">{{ demande.etat }}</span>
@@ -131,7 +130,7 @@
                       >
                         <button
                           class="text-indigo-700 text-sm rounded py-2 px-4 border border-transparent font-medium hover:text-white hover:bg-indigo-700"
-                          @click="modifier(demande.nom)"                        
+                          @click="modifier(demande.nom)"
                         >
                           <i class="fas fa-edit mr-2"></i>Modifier
                         </button>
@@ -140,7 +139,7 @@
                   </tr>
                 </tbody>
               </table>
-     
+
               <div class="flex flex-row items-center justify-between my-4">
                 <div
                   class="flex flex-wrap items-center justify-start children-x-2 pagination"
@@ -268,18 +267,16 @@
       }"
       :isOpen="isOpen"
     >
-      <ModalDemande v-if="modal1"  :demande="{}" />
-      <ModalDemandeModif v-if="modal2"  :demande="{}" />
-
+      <ModalDemande v-if="modal1" :demande="{}" />
+      <ModalDemande v-if="modal2" :demande="{}" />
     </Modal>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref } from "vue";
 import Modal from "../../modal/Modal.vue";
 import ModalDemande from "./modal-demande/ModalDemande.vue";
-import ModalDemandeModif from "./modal-demande/ModalDemandeModif.vue";
 import { useModal } from "../../../composables/useModal";
 const { openModal, isOpen } = useModal();
 
@@ -289,11 +286,11 @@ let num = 5;
 let x = 0;
 let y = 0;
 let NotifSucc = false;
-const demandes  = ref([
-  {nom:"FERCAM TUNISIE",date: "26/01/2022", etat:"En attente"},
-  {nom:"MAG TUNISIE",date: "01/07/2021", etat:"Accepté"},
-  {nom:"MAG TUNISIE",date: "01/06/2021", etat:"Refusé"},
-  {nom:"CAN TUNISIE",date: "02/04/2020", etat:"Accepté"},
+const demandes = ref([
+  { nom: "FERCAM TUNISIE", date: "26/01/2022", etat: "En attente" },
+  { nom: "MAG TUNISIE", date: "01/07/2021", etat: "Accepté" },
+  { nom: "MAG TUNISIE", date: "01/06/2021", etat: "Refusé" },
+  { nom: "CAN TUNISIE", date: "02/04/2020", etat: "Accepté" },
 ]);
 function suiv() {
   if (y < demandes.length) {
@@ -312,27 +309,23 @@ let msgSupp = "";
 function closeSuccess() {
   NotifSucc = !NotifSucc;
 }
-const modal1=ref(false);
-const modal2=ref(false);
+const modal1 = ref(false);
+const modal2 = ref(false);
 function supprimer(nom: string) {
   console.log("hello");
-  modal1.value=true;
-  modal2.value=false;
+  modal1.value = true;
+  modal2.value = false;
   openModal();
-  
+
   /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
   supprimerNote = !supprimerNote;*/
 }
 
 function modifier() {
-  modal2.value=true;
-  modal1.value=false;
+  modal2.value = true;
+  modal1.value = false;
   openModal();
-  
-
 }
-
-
 </script>
 
 <style scoped>
