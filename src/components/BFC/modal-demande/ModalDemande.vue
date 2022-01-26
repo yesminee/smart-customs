@@ -2,15 +2,11 @@
   <div>
     <div class="w-full h-full overflow">
       <div class="flex justify-center items-center">
-        <div
-          class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded"
-        >
+        <div class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded">
           <div class="flex flex-wrap">
             <div class="w-full">
-              <ul
-                class="flex mb-0 list-none flex-wrap-none pt-3 pb-4 flex-row cursor-pointer"
-              >
-                <li class="-mb-px mr-2 last:mr-0 w-1/2 text-center">
+              <ul class="flex items-stretch py-2 mb-0 list-none flex-wrap-none  flex-row cursor-pointer">
+                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
                   <a
                     class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
                     v-on:click="toggleTabs(1)"
@@ -26,9 +22,9 @@
                   </a>
                 </li>
 
-                <li class="-mb-px mr-2 last:mr-0 w-1/2 text-center">
+                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
                   <a
-                    class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
+                    class="text-xs font-bold uppercase h-full px-5 py-3 shadow-sm rounded block leading-normal"
                     v-on:click="toggleTabs(2)"
                     v-bind:class="{
                       'text-indigo-700 text-sm font-medium bg-white':
@@ -38,6 +34,20 @@
                     }"
                   >
                     <i class="fa fa-medkit text-base mr-1"></i> Demande
+                  </a>
+                </li>
+                <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
+                  <a
+                    class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
+                    v-on:click="toggleTabs(3)"
+                    v-bind:class="{
+                      'text-indigo-700 text-sm font-medium bg-white':
+                        openTab !== 3,
+                      'text-white text-sm font-medium bg-indigo-700':
+                        openTab === 3,
+                    }"
+                  >
+                    <i class="far fa-eye text-base mr-1"></i> Etat de la demande
                   </a>
                 </li>
               </ul>
@@ -145,26 +155,16 @@
                             <option
                               value="Société à responsabilité limitée"
                               selected
-                            >
-                              Société à responsabilité limitée
-                            </option>
+                            >Société à responsabilité limitée</option>
                             <option
                               value="Société unipersonnelle à responsabilité limitée"
-                            >
-                              Société unipersonnelle à responsabilité limitée
-                            </option>
-                            <option value="Société anonyme">
-                              Société anonyme
-                            </option>
-                            <option value="Société en nom collectif">
-                              Société en nom collectif
-                            </option>
-                            <option value="Société en commandite simple">
-                              Société en commandite simple
-                            </option>
-                            <option value="Société en participation">
-                              Société en participation
-                            </option>
+                            >Société unipersonnelle à responsabilité limitée</option>
+                            <option value="Société anonyme">Société anonyme</option>
+                            <option value="Société en nom collectif">Société en nom collectif</option>
+                            <option
+                              value="Société en commandite simple"
+                            >Société en commandite simple</option>
+                            <option value="Société en participation">Société en participation</option>
                           </select>
                         </div>
                         <div>
@@ -178,9 +178,7 @@
                         </div>
                         <div class="flex w-full space-x-2">
                           <div class="w-1/2">
-                            <label for="dateDebAct" class="text-gray-600"
-                              >Date de début d'activité</label
-                            >
+                            <label for="dateDebAct" class="text-gray-600">Date de début d'activité</label>
                             <input
                               type="date"
                               id="dateDebAct"
@@ -192,9 +190,7 @@
                           </div>
                           <br />
                           <div class="w-1/2">
-                            <label for="datePub" class="text-gray-600"
-                              >Date de publication</label
-                            >
+                            <label for="datePub" class="text-gray-600">Date de publication</label>
                             <div class="relative"></div>
                             <input
                               type="date"
@@ -203,11 +199,6 @@
                               min="1940-01-01"
                               :max="dateMAx"
                               class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                              :class="
-                                erreur.datePub
-                                  ? 'border border-red-500 shadow-none'
-                                  : ''
-                              "
                             />
                           </div>
                         </div>
@@ -290,74 +281,105 @@
                       }"
                     >
                       <form class="space-y-4" action="#" method="POST">
+                        <div class="mt-2">
+                          <div class="flex w-full space-x-2">
+                            <div class="w-1/2">
+                              <MDBInput
+                                id="adresseMagasin"
+                                label="Adresse de magasin"
+                                type="text"
+                                class="input w-full bg-white"
+                                required
+                              ></MDBInput>
+                            </div>
+                            <br />
+                            <div class="w-1/2">
+                              <MDBInput
+                                id="SuperficieMagasin"
+                                label="Superficie de magasin"
+                                type="text"
+                                class="input w-full bg-white"
+                                v-model="add.SuperficieMagasin"
+                                required
+                              ></MDBInput>
+                            </div>
+                          </div>
+                        </div>
                         <div class="mt-4">
                           <div class="flex w-full space-x-2">
                             <div class="w-1/2">
-                              <label for="numvol">Numéro volontaire</label>
-                              <input
-                                :class="
-                                  erreur.numeroVolontaire
-                                    ? 'border border-indigo-500 shadow-none'
-                                    : ''
-                                "
-                                id="numeroVolontaire"
-                                name="numvol"
+                              <MDBInput
+                                id="typeMagasin"
+                                label="Type de magasin"
                                 type="text"
                                 class="input w-full bg-white"
-                                placeholder="Numéro volontaire"
-                                v-model="user.numeroVolontaire"
-                              />
+                                v-model="add.typeMagasin"
+                                required
+                              ></MDBInput>
                             </div>
+                            <br />
                             <div class="w-1/2">
-                              <label for="adresse">Membre depuis</label>
-                              <input
-                                class="input w-full border border-indigo-500 shadow-none"
-                                type="date"
-                                id="MembreDepuis"
-                                name="trip-start"
-                                v-model="user.MembreDepuis"
-                                min="2000-01-01"
-                                :max="today"
-                              />
-                              <span class="text-indigo-700"
-                                >Ce champ est obligatoire.</span
-                              >
-                              <br />
+                              <MDBInput
+                                id="descMagasin"
+                                label="Description de magasin"
+                                type="text"
+                                class="input w-full bg-white"
+                                v-model="add.descMagasin"
+                                required
+                              ></MDBInput>
                             </div>
                           </div>
                         </div>
                         <div class="mt-4">
-                          <label for="password">Attestation</label>
-                          <select
-                            id="Attestation"
-                            name="niveau"
-                            v-model="user.Attestation"
-                            class="input w-full cursor-pointer"
-                          >
-                            <option>Premiers Secours</option>
-                            <option>Premiers Secours en Equipe</option>
-                            <option>Monitorat</option>
-                            <option>Insructorat</option>
-                          </select>
+                          <div class="flex w-full space-x-2">
+                            <div class="w-1/2">
+                              <MDBInput
+                                id="capacite"
+                                label="Capacité"
+                                type="text"
+                                class="input w-full bg-white"
+                                v-model="add.capacite"
+                                required
+                              ></MDBInput>
+                            </div>
+                            <br />
+                            <div class="w-1/2">
+                              <MDBInput
+                                id="equipement"
+                                label="Equipement"
+                                type="text"
+                                class="input w-full bg-white"
+                                v-model="add.equipement"
+                              ></MDBInput>
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <label
+                            for="dateLimteProtectionCivil"
+                            class="text-gray-600"
+                          >Date limite de la protection civile</label>
+                          <div class="relative"></div>
+                          <input
+                            type="date"
+                            id="dateLimteProtectionCivil"
+                            v-model="user.dateLimteProtectionCivil"
+                            min="1940-01-01"
+                            :max="dateMAx"
+                            class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          />
                         </div>
 
-                        <div class="mt-4">
-                          <label for="paye">Payé</label>
-                          <div
-                            class="relative inline-block w-10 ml-2 align-middle select-none transition duration-200 ease-in"
-                          >
-                            <input
-                              type="checkbox"
-                              v-model="user.paye"
-                              name="paye"
-                              id="paye"
-                              class="toggle-checkbox outline-none absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-                            />
-                            <label
-                              for="toggle"
-                              class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
-                            ></label>
-                          </div>
+                        <label class="form-label" for="documents">Documents</label>
+                        <div class="flex flex-wrap">
+                          <div  class="p-1 w-1/3" v-for="image in doc" :key="image">
+                          <a target="_blank" :href="image">
+                          <img
+                            :src="image"
+                            alt="Fissure in Sandstone"
+                          />
+                       </a>
+                        </div>
                         </div>
                       </form>
                     </div>
@@ -374,9 +396,12 @@
 
 <script setup lang="ts">
 import { MDBInput } from "mdb-vue-ui-kit";
+import dayjs from "dayjs";
 
 import { ref } from "vue";
-
+const today = dayjs(new Date()).format("YYYY-MM-DD");
+const dateMAx = new Date().getFullYear() - 15 + "-12-31";
+const doc=ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
 const add = ref({
   nom: "",
   prenom: "",
@@ -395,6 +420,12 @@ const add = ref({
   NumRegistreCommerce: "",
   NomSociteAssurance: "",
   numContractAssurance: "",
+  SuperficieMagasin: "",
+  typeMagasin: "",
+  descMagasin: "",
+  capacite: "",
+  equipement: "",
+  dateLimteProtectionCivil: "",
 });
 const user = ref({
   nom: "",
@@ -414,37 +445,12 @@ const user = ref({
   NumRegistreCommerce: "",
   NomSociteAssurance: "",
   numContractAssurance: "",
-});
-const erreur = ref({
-  nom: false,
-  nom1: false,
-  nom2: false,
-  prenom: false,
-  prenom1: false,
-  prenom2: false,
-  CIN: false,
-  CIN1: false,
-  CIN2: false,
-  email: false,
-  email1: false,
-  numeroTel: false,
-  numeroTel1: false,
-  numeroTel2: false,
-  nomEntreprise: false,
-  capitalSocial: false,
-  dateDebAct: false,
-  dateDebAct1: false,
-  datePub: false,
-  datePub1: false,
-  actPrincipale: false,
-  actSecondaire: false,
-  matriculeFiscal: false,
-  NumRegistreCommerce: false,
-  NomSociteAssurance: false,
-  numContractAssurance: false,
+  dateLimteProtectionCivil: "",
 });
 const openTab = ref(1);
 function toggleTabs(tabNumber: any) {
   openTab.value = tabNumber;
 }
+
+
 </script>

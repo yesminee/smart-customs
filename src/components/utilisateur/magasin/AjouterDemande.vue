@@ -737,7 +737,7 @@ const openTab = ref(1);
 function toggleTabs(tabNumber: any) {
   openTab.value = tabNumber;
 }
-const blood = ref("O+");
+
 const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
 
