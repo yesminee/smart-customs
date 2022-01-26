@@ -10,10 +10,10 @@ const routes = [
   { path: "/", component: Login },
   { path: "/login", component: Login },
   { path: "/signup", component: SignUp },
-  { path: "/DRD", component: DRD },
+  { path: "/DRD/:etat", component: DRD },
   { path: "/BFC", component: BFC },
   { path: "/magasin", component: Magasin },
-  { path: "/ajouterDemande", component: AjouterDemande },
+  { path: "/ajouter-demande", component: AjouterDemande },
 ];
 const router = createRouter({ history, routes });
 

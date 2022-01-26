@@ -292,7 +292,8 @@ import { useModal } from "../../composables/useModal";
 import Modal from "../modal/Modal.vue";
 import ModalDemande from "./modal-demande/ModalDemande.vue";
 import ModalDemandeModif from "./modal-demande/ModalDemandeModif.vue";
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useRoute } from "vue-router";
 let supprimerNote = false;
 let msg = " Êtes-vous sûr de vouloir supprimer le volontaire ";
 let num = 5;
@@ -301,12 +302,16 @@ let y = 0;
 const modal1=ref(false);
 const modal2=ref(false);
 let NotifSucc = false;
-const demandes  = ref([
+const route = useRoute()
+
+const demandesA  = ref([
   {nom:"Vera Carpenter",date: "Monitorat", etat:"Accepté"},
   {nom:"Malek Slokom",date: "FPS", etat:"Refusé"},
   {nom:"Ali Ben zaid",date: "Monitorat", etat:"En attente"},
   {nom:"Manel",date: "FS", etat:"Accepté"},
 ]);
+
+const demandes= computed(()=>demandesA.value.filter((demande)=> demande.etat==route.params.etat))
 
 const { openModal, isOpen } = useModal();
 
