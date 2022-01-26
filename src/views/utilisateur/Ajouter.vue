@@ -1,13 +1,13 @@
 <template>
   <NavBar />
-  <List />
+  <AjouterDemande />
 </template>
 
 <script setup lang="ts">
 import axios from "axios";
 import { ref } from "vue";
 import NavBar from "../../components/utilisateur/NavBar.vue";
-import List from "../../components/utilisateur/magasin/List.vue";
+import AjouterDemande from "../../components/utilisateur/magasin/AjouterDemande.vue";
 
 </script>
 
