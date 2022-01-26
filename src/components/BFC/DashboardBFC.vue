@@ -1,8 +1,7 @@
 <template>
   <div class="w-full h-full overflow">
-    <div class="absolute top-0 w-screen h-16 bg-indigo-800"></div>
-    <body class="antialiased font-sans mt-12">
-      <div class="container mx-auto px-4 sm:px-8">
+    <body class="antialiased font-sans">
+      <div class="container mx-auto w-screen md:w-5/6">
         <div class="p-8">
           <div class="my-2 flex sm:flex-row flex-col justify-between">
             <div class="flex items-center">
@@ -12,11 +11,12 @@
                     class="appearance-none rounded h-full border sm:rounded-r-none sm:border-r-0 block w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-indigo-500"
                   >
                     <option>tous</option>
-                    <optgroup label="Payément">
-                      <option>Payé</option>
-                      <option>Non pas payé</option>
+                    <optgroup label="Etat">
+                      <option>Accepté</option>
+                      <option>En attente</option>
+                      <option>Refusé</option>
                     </optgroup>
-                    <optgroup label="Attestation">
+                    <optgroup label="Nom magasin">
                       <option>FPS</option>
                       <option>FPSE</option>
                       <option>Monitorat</option>
@@ -39,7 +39,7 @@
               </div>
             </div>
             <div class="justify-self-end">
-              <router-link to="/volontaire/ajouter">
+              <router-link to="/ajouterDemande">
                 <button
                   class="text-indigo-700 text-sm rounded py-2 px-4 border border-indigo-700 font-medium hover:text-white focus:outline-none hover:bg-indigo-700"
                 >
@@ -58,18 +58,18 @@
                     <th
                       class="px-5 py-3 border-b-2 border-indigo-700 text-center text-xs font-bold text-indigo-700 uppercase tracking-wider"
                     >
-                      Volontaire
+                      Nom magasin
                     </th>
                     <th
                       class="px-5 py-3 border-b-2 border-indigo-700 text-center text-xs font-bold text-indigo-700 uppercase tracking-wider"
                     >
-                      Attestation
+                      Date de demande
                     </th>
 
                     <th
                       class="px-5 py-3 border-b-2 border-indigo-700 text-center text-xs font-bold text-indigo-700 uppercase tracking-wider"
                     >
-                      Payé
+                      Etat
                     </th>
                     <th
                       class="px-5 py-3 border-b-2 text-xs font-bold border-indigo-700 text-center text-indigo-700 uppercase tracking-wider"
@@ -78,26 +78,18 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody v-for="x in num" :key="x">
+                <tbody v-for="demande in demandes" :key="demande.nom">
                   <tr>
                     <td
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <div class="flex items-center">
-                        <router-link
-                          to="/volontaire/profile"
-                          class="flex-shrink-0 w-10 h-10"
-                        >
-                          <img
-                            class="w-full h-full rounded-full"
-                            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.2&w=160&h=160&q=80"
-                            alt=""
-                          />
-                        </router-link>
+                     
+                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700" @click="supprimer(demande.nom)"></i>
 
                         <div class="ml-3">
-                          <p class="text-gray-900 whitespace-no-wrap">
-                            {{ tab[y][0] }}
+                          <p class="text-gray-900 whitespace-no-wrap font-semibold">
+                            {{ demande.nom }}
                           </p>
                         </div>
                       </div>
@@ -106,7 +98,7 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <p class="text-gray-900 text-center whitespace-no-wrap">
-                        {{ tab[y][1] }}
+                        {{ demande.date}}
                       </p>
                     </td>
 
@@ -120,12 +112,14 @@
                           aria-hidden
                           class="absolute inset-0 text-center rounded-full"
                           :class="
-                            tab[y][2] == 'Oui'
-                              ? 'bg-gray-300'
-                              : 'bg-indigo-500 '
+                            demande.etat == 'Accepté'
+                              ? 'bg-green-300'
+                              : demande.etat == 'Refusé'
+                              ?'bg-red-500' : 'bg-orange-400'
+                              
                           "
                         ></span>
-                        <span class="relative">{{ tab[y][2] }}</span>
+                        <span class="relative">{{ demande.etat }}</span>
                       </span>
                     </td>
 
@@ -137,9 +131,9 @@
                       >
                         <button
                           class="text-indigo-700 text-sm rounded py-2 px-4 border border-transparent font-medium hover:text-white hover:bg-indigo-700"
-                          @click="supprimer(tab[y][0])"
+                        @click="modifier(demande.nom)"
                         >
-                          <i class="fas fa-trash mr-2"></i>Supprimer
+                          <i class="fas fa-trash mr-2"></i>Modifier
                         </button>
                       </div>
                     </td>
@@ -174,7 +168,7 @@
                   </button>
                 </div>
                 <span
-                  >Page <b>{{ y + 1 }} of {{ tab.length }}</b>
+                  >Page <b>{{ y + 1 }} of {{ demandes.length }}</b>
                 </span>
                 <button
                   class="btn btn-default btn-default-color transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110"
@@ -286,7 +280,9 @@
       }"
       :isOpen="isOpen"
     >
-      <ModalDemande :demande="{}" />
+      <ModalDemande v-if="modal1"  :demande="{}" />
+      <ModalDemandeModif v-if="modal2"  :demande="{}" />
+
     </Modal>
   </div>
 </template>
@@ -295,24 +291,27 @@
 import { useModal } from "../../composables/useModal";
 import Modal from "../modal/Modal.vue";
 import ModalDemande from "./modal-demande/ModalDemande.vue";
-
+import ModalDemandeModif from "./modal-demande/ModalDemandeModif.vue";
+import { ref } from 'vue';
 let supprimerNote = false;
 let msg = " Êtes-vous sûr de vouloir supprimer le volontaire ";
 let num = 5;
 let x = 0;
 let y = 0;
+const modal1=ref(false);
+const modal2=ref(false);
 let NotifSucc = false;
-let tab = [
-  ["Vera Carpenter", "Monitorat", "Non"],
-  ["Malek Slokom", "FPS", "Oui"],
-  ["Ali Ben zaid", "FPS", "Oui"],
-  ["Manel", "Slokom", "Non"],
-];
+const demandes  = ref([
+  {nom:"Vera Carpenter",date: "Monitorat", etat:"Accepté"},
+  {nom:"Malek Slokom",date: "FPS", etat:"Refusé"},
+  {nom:"Ali Ben zaid",date: "Monitorat", etat:"En attente"},
+  {nom:"Manel",date: "FS", etat:"Accepté"},
+]);
 
 const { openModal, isOpen } = useModal();
 
 function suiv() {
-  if (y < tab.length) {
+  if (y < demandes.value.length) {
     y += 1;
     x += 5;
   }
@@ -327,10 +326,22 @@ function prev() {
 let msgSupp = "";
 function supprimer(nom: string) {
   console.log("hello");
+  modal1.value=true;
+  modal2.value=false;
   openModal();
+  
   /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
   supprimerNote = !supprimerNote;*/
 }
+
+function modifier() {
+  modal2.value=true;
+  modal1.value=false;
+  openModal();
+  
+
+}
+
 function Confirmersupprimer() {
   supprimerNote = !supprimerNote;
   msgSupp = "Le volontaire a été supprimé avec succés";

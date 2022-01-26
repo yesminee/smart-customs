@@ -5,7 +5,9 @@
         <div class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded">
           <div class="flex flex-wrap">
             <div class="w-full">
-              <ul class="flex items-stretch py-2 mb-0 list-none flex-wrap-none  flex-row cursor-pointer">
+              <ul
+                class="flex items-stretch py-2 mb-0 list-none flex-wrap-none flex-row cursor-pointer"
+              >
                 <li class="-mb-px mr-2 last:mr-0 w-1/3 text-center">
                   <a
                     class="text-xs font-bold uppercase px-5 py-3 shadow-sm rounded block leading-normal"
@@ -62,7 +64,7 @@
                         block: openTab === 1,
                       }"
                     >
-                      <form class="space-y-4" action="#" method="POST">
+                      <form class="space-y-6" action="#" method="POST">
                         <input type="hidden" name="remember" value="true" />
                         <div class="flex w-full space-x-2">
                           <div class="w-1/2">
@@ -280,8 +282,9 @@
                         block: openTab === 2,
                       }"
                     >
-                      <form class="space-y-4" action="#" method="POST">
-                        <div class="mt-2">
+                    
+                      <form class="space-y-8" action="#" method="POST">
+                        <div class="mt-4">
                           <div class="flex w-full space-x-2">
                             <div class="w-1/2">
                               <MDBInput
@@ -372,16 +375,29 @@
 
                         <label class="form-label" for="documents">Documents</label>
                         <div class="flex flex-wrap">
-                          <div  class="p-1 w-1/3" v-for="image in doc" :key="image">
-                          <a target="_blank" :href="image">
-                          <img
-                            :src="image"
-                            alt="Fissure in Sandstone"
-                          />
-                       </a>
-                        </div>
+                          <div class="p-1 w-1/3" v-for="image in doc" :key="image">
+                            <a target="_blank" :href="image">
+                              <img :src="image" alt="Fissure in Sandstone" />
+                            </a>
+                          </div>
                         </div>
                       </form>
+                    </div>
+                    <div
+                      v-bind:class="{
+                        hidden: openTab !== 3,
+                        block: openTab === 3,
+                      }"
+                      class="flex justify-center pr-32"
+                    >
+                      <Steps
+                        :steps="[
+                          { nom: 'Create Account', statut: 'terminé' },
+                          { nom: 'Profile Information', statut: 'en cours' },
+                          { nom: 'Business Information', statut: 'en attente' },
+                          { nom: 'Theme', statut: 'refusé' },
+                        ]"
+                      />
                     </div>
                   </div>
                 </div>
@@ -397,11 +413,11 @@
 <script setup lang="ts">
 import { MDBInput } from "mdb-vue-ui-kit";
 import dayjs from "dayjs";
-
 import { ref } from "vue";
+import Steps from "../../steps/Steps.vue";
 const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
-const doc=ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp","https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
+const doc = ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
 const add = ref({
   nom: "",
   prenom: "",
@@ -451,6 +467,7 @@ const openTab = ref(1);
 function toggleTabs(tabNumber: any) {
   openTab.value = tabNumber;
 }
+
 
 
 </script>

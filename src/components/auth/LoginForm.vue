@@ -50,15 +50,11 @@
                   <div class="d-grid gap-2">
                     <MDBBtn
                       style="
-                        background: rgb(9, 9, 121);
-                        background: linear-gradient(
-                          90deg,
-                          rgba(9, 9, 121, 1) 0%,
-                          rgba(79, 183, 203, 1) 100%
-                        );
+                    
                         color: white;
                         font-size: 12px;
                       "
+                      class="bg-indigo-700"
                       block
                       @click.prevent="login"
                       >Se connecter</MDBBtn
@@ -96,9 +92,10 @@ const login = () => {
   min-height: 100vh;
 }
 .bg-image {
-  background-image: url("../../assets/image/douane-home.jpg");
+  background-image: url("../../assets/image/douane-home.png");
   background-size: cover;
   background-position: center center;
+  background-color: #174D9D;
 }
 .title {
   text-align: center;
