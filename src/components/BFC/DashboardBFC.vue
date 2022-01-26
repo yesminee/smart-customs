@@ -326,6 +326,7 @@ function prev() {
 
 let msgSupp = "";
 function supprimer(nom: string) {
+  console.log("hello");
   openModal();
   /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
   supprimerNote = !supprimerNote;*/
