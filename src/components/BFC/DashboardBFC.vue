@@ -40,7 +40,7 @@
                     >
                       <div class="flex items-center">
                         <i
-                          class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700"
+                          class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700 cursor-pointer"
                           @click="supprimer(demande.nom)"
                         ></i>
 
@@ -239,6 +239,7 @@
       }"
       :isOpen="isOpen"
     >
+      <ModalDemande v-if="modal1" />
       <ModalDemandeModif @confirmer="confirmer" v-if="modal2" :index="index" />
     </Modal>
   </div>
