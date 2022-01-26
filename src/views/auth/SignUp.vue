@@ -26,6 +26,7 @@ const signup = async ({
   email: string;
   motDePasse: string;
 }) => {
+  console.log("signup");
   const res = await axios.post(`${import.meta.env.VITE_AUTH_SERVICE}/signup`, {
     cin,
     nom,
