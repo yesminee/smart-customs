@@ -293,6 +293,7 @@
                                 label="Adresse de magasin"
                                 type="text"
                                 class="input w-full bg-white"
+                                v-model="add.adresseDuMagasin"
                                 required
                               ></MDBInput>
                             </div>

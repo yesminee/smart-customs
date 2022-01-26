@@ -293,6 +293,7 @@
                                 label="Adresse de magasin"
                                 type="text"
                                 class="input w-full bg-white"
+                                v-model="add.adresseDuMagasin"
                                 required
                               ></MDBInput>
                             </div>
@@ -426,6 +427,7 @@ const add = ref({
   capitalSocial: "100.000 dt",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "23, rue mosaddirin zone indistruelle rades, mileha",
+  adresseDuMagasin: "23, rue mosaddirin",
   dateDebAct: "2012/09/14",
   datePub: "2012/09/18",
   actPrincipale: "Transport Maritime",
@@ -452,6 +454,7 @@ const user = ref({
   capitalSocial: "",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "",
+  adresseDuMagasin: "23, rue mosaddirin",
   dateDebAct: "",
   datePub: "",
   actPrincipale: "",
