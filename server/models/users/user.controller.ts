@@ -1,6 +1,6 @@
 import { checkSchema } from "express-validator";
 
-import { authenticate, registration, getAllUsers } from "./user.service";
+import {authenticate, registration, getAllUsers, updateUserData} from './user.service';
 
 import { authorize } from "../../middlewares/authorize";
 import authMiddleware from "../../middlewares/auth.middleware";
@@ -48,6 +48,19 @@ function all(req, res, next) {
     .then((result) => res.json(result))
     .catch((err) => next(err));
 }
+
+function updateUser(req,res,next){
+  console.log(req.user.sub)
+ updateUserData({
+   id: req.user.id,      
+   email: req.body.email,
+   nom: req.body.nom,
+   prenom: req.body.prenom,
+   numeroTel: req.body.numeroTel,
+   cin: req.body.cin})   
+   .then(result => res.json(result))
+   .catch(err => next(err));
+}
 /**
  *  a new user
  * @param req
@@ -76,6 +89,13 @@ router.post(
  * PUT /api/v1/user/
  * Update a new user
  */
+ router.put('/',
+  headerToTokenMiddleware,
+  authMiddleware,
+  authorize(),
+  checkSchema(updateUserSchema),
+  checkSchemaErrors,
+  updateUser);
 
 /**
  * GET /api/v1/user/
@@ -89,6 +109,12 @@ router.get(
   all
 );
 
-router.put("/", checkSchema(updateUserSchema), checkSchemaErrors, signup);
+router.put("/",
+ headerToTokenMiddleware,
+ authMiddleware,
+ authorize(),
+ checkSchema(updateUserSchema),
+ checkSchemaErrors, 
+ updateUser);
 
 export default router;

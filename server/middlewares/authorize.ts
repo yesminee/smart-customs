@@ -8,9 +8,7 @@ const { User } = db;
 export const authorize = (
     roles = DEFAULT_ALLOWED_ROLES,
   ) => async (req, res, next) => {
-      console.log(req.user)
     if (!req.user) {
-        console.log('here')
         throw new AuthorizationError(i18n.__('user.authorisation.invalid_token'));
     }
     roles.push('BFC');
