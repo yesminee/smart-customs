@@ -4,7 +4,6 @@
       <div class="container mx-auto w-screen md:w-5/6">
         <div class="p-8">
           <div class="my-2 flex sm:flex-row flex-col justify-end">
-            
             <div class="justify-self-end">
               <router-link to="/ajouterDemande">
                 <button
@@ -41,7 +40,11 @@
                     <th
                       class="px-5 py-3 border-b-2 text-xs font-bold border-indigo-700 text-center text-indigo-700 uppercase tracking-wider"
                     >
-                      Action
+                      {{
+                        route.params.etat == "Accepté"
+                          ? "Chef de Bureau"
+                          : "Action"
+                      }}
                     </th>
                   </tr>
                 </thead>
@@ -51,11 +54,15 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <div class="flex items-center">
-                     
-                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700" @click="supprimer(demande.nom)"></i>
+                        <i
+                          class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700"
+                          @click="supprimer(demande.nom)"
+                        ></i>
 
                         <div class="ml-3">
-                          <p class="text-gray-900 whitespace-no-wrap font-semibold">
+                          <p
+                            class="text-gray-900 whitespace-no-wrap font-semibold"
+                          >
                             {{ demande.nom }}
                           </p>
                         </div>
@@ -65,7 +72,7 @@
                       class="px-5 py-5 border-b border-indigo-700 bg-white text-sm"
                     >
                       <p class="text-gray-900 text-center whitespace-no-wrap">
-                        {{ demande.date}}
+                        {{ demande.date }}
                       </p>
                     </td>
 
@@ -82,8 +89,8 @@
                             demande.etat == 'Accepté'
                               ? 'bg-green-300'
                               : demande.etat == 'Refusé'
-                              ?'bg-red-500' : 'bg-orange-400'
-                              
+                              ? 'bg-red-500'
+                              : 'bg-orange-400'
                           "
                         ></span>
                         <span class="relative">{{ demande.etat }}</span>
@@ -98,10 +105,19 @@
                       >
                         <button
                           class="text-indigo-700 text-sm rounded py-2 px-4 border border-transparent font-medium hover:text-white hover:bg-indigo-700"
-                        @click="modifier(demande.nom)"
+                          @click="modifier(demande.nom)"
+                          v-if="demande.etat !== 'Accepté'"
                         >
                           <i class="fas fa-trash mr-2"></i>Modifier
                         </button>
+                        <select
+                          class="input flex-shrink-0 flex-1 h-9 form-select"
+                          v-else
+                        >
+                          <option value="47" selected>47</option>
+                          <option value="13" selected>13</option>
+                          <option value="12" selected>12</option>
+                        </select>
                       </div>
                     </td>
                   </tr>
@@ -247,9 +263,8 @@
       }"
       :isOpen="isOpen"
     >
-      <ModalDemande v-if="modal1"  :demande="{}" />
-      <ModalDemandeModif v-if="modal2"  :demande="{}" />
-
+      <ModalDemande v-if="modal1" :demande="{}" />
+      <ModalDemandeModif v-if="modal2" :index="index" @confirmer="confirmer" />
     </Modal>
   </div>
 </template>
@@ -259,26 +274,28 @@ import { useModal } from "../../composables/useModal";
 import Modal from "../modal/Modal.vue";
 import ModalDemande from "./modal-demande/ModalDemande.vue";
 import ModalDemandeModif from "./modal-demande/ModalDemandeModif.vue";
-import { computed, ref } from 'vue';
+import { computed, ref } from "vue";
 import { useRoute } from "vue-router";
 let supprimerNote = false;
 let msg = " Êtes-vous sûr de vouloir supprimer le volontaire ";
 let num = 5;
 let x = 0;
 let y = 0;
-const modal1=ref(false);
-const modal2=ref(false);
+const modal1 = ref(false);
+const modal2 = ref(false);
 let NotifSucc = false;
-const route = useRoute()
+const route = useRoute();
 
-const demandesA  = ref([
-  {nom:"Vera Carpenter",date: "Monitorat", etat:"Accepté"},
-  {nom:"Malek Slokom",date: "FPS", etat:"Refusé"},
-  {nom:"Ali Ben zaid",date: "Monitorat", etat:"En attente"},
-  {nom:"Manel",date: "FS", etat:"Accepté"},
+const demandesA = ref([
+  { nom: "Vera Carpenter", date: "Monitorat", etat: "Accepté" },
+  { nom: "Malek Slokom", date: "FPS", etat: "Refusé" },
+  { nom: "Ali Ben zaid", date: "Monitorat", etat: "En attente" },
+  { nom: "Manel", date: "FS", etat: "Accepté" },
 ]);
 
-const demandes= computed(()=>demandesA.value.filter((demande)=> demande.etat==route.params.etat))
+const demandes = computed(() =>
+  demandesA.value.filter((demande) => demande.etat == route.params.etat)
+);
 
 const { openModal, isOpen } = useModal();
 
@@ -298,20 +315,21 @@ function prev() {
 let msgSupp = "";
 function supprimer(nom: string) {
   console.log("hello");
-  modal1.value=true;
-  modal2.value=false;
+  modal1.value = true;
+  modal2.value = false;
   openModal();
-  
+
   /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
   supprimerNote = !supprimerNote;*/
 }
 
-function modifier() {
-  modal2.value=true;
-  modal1.value=false;
-  openModal();
-  
+const index = ref(-1);
 
+function modifier(nom: string) {
+  modal2.value = true;
+  modal1.value = false;
+  index.value = demandesA.value.findIndex((demande) => demande.nom === nom);
+  openModal();
 }
 
 function Confirmersupprimer() {
@@ -322,6 +340,9 @@ function Confirmersupprimer() {
 function closeSuccess() {
   NotifSucc = !NotifSucc;
 }
+const confirmer = ({ index, etat }: { index: number; etat: string }) => {
+  demandesA.value[index].etat = etat;
+};
 </script>
 
 <style scoped>
