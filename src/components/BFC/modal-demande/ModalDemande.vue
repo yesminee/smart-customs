@@ -87,7 +87,7 @@
                               class="input w-full bg-white"
                               maxlength="8"
                               minlength="8"
-                              v-model="user.CIN"
+                              v-model="add.CIN"
                               required
                             ></MDBInput>
                           </div>
@@ -100,7 +100,7 @@
                               class="input w-full bg-white"
                               maxlength="8"
                               minlength="8"
-                              v-model="user.numeroTel"
+                              v-model="add.numeroTel"
                             ></MDBInput>
                           </div>
                         </div>
@@ -111,7 +111,7 @@
                             label="Email"
                             type="email"
                             class="input w-full bg-white"
-                            v-model="user.email"
+                            v-model="add.email"
                           ></MDBInput>
                         </div>
 
@@ -173,7 +173,7 @@
                             label="Adresse d'entreprise"
                             type="string"
                             class="input w-full bg-white"
-                            v-model="user.adresseEnt"
+                            v-model="add.adresseEnt"
                           ></MDBInput>
                         </div>
                         <div class="flex w-full space-x-2">
@@ -184,7 +184,7 @@
                             <input
                               type="date"
                               id="dateDebAct"
-                              v-model="user.dateDebAct"
+                              v-model="add.dateDebAct"
                               min="1940-01-01"
                               :max="dateMAx"
                               class="bg-gray-50 border border-gray-300 text-gray-500 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -199,7 +199,7 @@
                             <input
                               type="date"
                               id="datePub"
-                              v-model="user.datePub"
+                              v-model="add.datePub"
                               min="1940-01-01"
                               :max="dateMAx"
                               class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -369,7 +369,7 @@
                           <input
                             type="date"
                             id="dateLimteProtectionCivil"
-                            v-model="user.dateLimteProtectionCivil"
+                            v-model="add.dateLimteProtectionCivil"
                             min="1940-01-01"
                             :max="dateMAx"
                             class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

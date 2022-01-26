@@ -2,7 +2,7 @@
   <form class="bg-white p-8 rounded w-96">
     <div class="form-group mb-3">
       <div>
-        <label for="">Valider Demande</label>
+        <label for="">Valider la Demande</label>
         <select
           class="input flex-shrink-0 flex-1 h-9 form-select"
           v-model="valide"
@@ -70,7 +70,7 @@ import { MDBBtn, MDBInput } from "mdb-vue-ui-kit";
 import { ref } from "vue";
 import { useModal } from "../../../composables/useModal";
 const { closeModal } = useModal();
-const valide = ref("");
+const valide = ref("Oui");
 const NomBFC = ref("Tunis");
 const avis = ref("");
 const confirmer = () => {

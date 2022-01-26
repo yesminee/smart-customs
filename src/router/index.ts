@@ -34,6 +34,7 @@ router.beforeEach((to, from, next) => {
   )
     return next("/login");
 */
+  if (to.path == "/DRD" || to.path == "/DRD/") next("/DRD/En%20attente");
   next();
 });
 

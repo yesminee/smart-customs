@@ -399,7 +399,7 @@
                         hidden: openTab !== 3,
                         block: openTab === 3,
                       }"
-                      class="flex justify-center pl-24 pb-8"
+                      class="flex justify-center pb-8"
                     >
                       <Steps
                         :steps="[

@@ -3,17 +3,6 @@
     <body class="antialiased font-sans">
       <div class="container mx-auto w-screen md:w-5/6">
         <div class="p-8">
-          <div class="my-2 flex sm:flex-row flex-col justify-end">
-            <div class="justify-self-end">
-              <router-link to="/ajouterDemande">
-                <button
-                  class="text-indigo-700 text-sm rounded py-2 px-4 border border-indigo-700 font-medium hover:text-white focus:outline-none hover:bg-indigo-700"
-                >
-                  <i class="fas fa-user-plus mr-2"></i>Ajouter
-                </button></router-link
-              >
-            </div>
-          </div>
           <div class="overflow-x-auto shadow mt-4">
             <div
               class="inline-block min-w-full shadow rounded-lg overflow-hidden"
@@ -264,7 +253,7 @@
       :isOpen="isOpen"
     >
       <ModalDemande v-if="modal1" :demande="{}" />
-      <ModalDemandeModif v-if="modal2" :demande="{}" />
+      <ModalDemandeModif @confirmer="confirmer" v-if="modal2" :index="index" />
     </Modal>
   </div>
 </template>
@@ -285,7 +274,7 @@ const modal1 = ref(false);
 const modal2 = ref(false);
 let NotifSucc = false;
 const route = useRoute();
-
+const index = ref(-1);
 const demandesA = ref([
   { nom: "FERCAM TUNISIE", date: "26/01/2022", etat: "En attente" },
   { nom: "FERCAM TUNISIE", date: "26/01/2022", etat: "Accepté" },
@@ -315,18 +304,20 @@ function prev() {
 
 let msgSupp = "";
 function supprimer(nom: string) {
-  console.log("hello");
+  console.log(nom);
   modal1.value = true;
   modal2.value = false;
+  index.value = demandesA.value.findIndex((demande) => demande.nom == nom);
   openModal();
 
   /*msg = ' Êtes-vous sûr de vouloir supprimer le volontaire "' + nom + '"?';
   supprimerNote = !supprimerNote;*/
 }
 
-function modifier() {
+function modifier(nom: string) {
   modal2.value = true;
   modal1.value = false;
+  index.value = demandesA.value.findIndex((demande) => demande.nom == nom);
   openModal();
 }
 
@@ -338,6 +329,12 @@ function Confirmersupprimer() {
 function closeSuccess() {
   NotifSucc = !NotifSucc;
 }
+
+const confirmer = ({ index, etat }: { index: number; etat: string }) => {
+  console.log(index, etat);
+  demandesA.value[index].etat = etat;
+  console.log(index, etat);
+};
 </script>
 
 <style scoped>

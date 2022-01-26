@@ -56,9 +56,11 @@ import { MDBBtn, MDBInput } from "mdb-vue-ui-kit";
 import { ref } from "vue";
 import { useModal } from "../../../composables/useModal";
 const { closeModal } = useModal();
-const valide = ref("");
+const valide = ref("Oui");
 const NomBFC = ref("Tunis");
 const avis = ref("");
+const emits = defineEmits(["confirmer"]);
+
 const confirmer = () => {
   emits("confirmer", {
     index,
@@ -67,7 +69,6 @@ const confirmer = () => {
   closeModal();
 };
 
-const emits = defineEmits(["confirmer"]);
 const { index } = defineProps<{ index: number }>();
 </script>
 
