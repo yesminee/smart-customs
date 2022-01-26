@@ -1,4 +1,12 @@
 <template>
+  <!--<Steps
+    :steps="[
+      { nom: 'Create Account', statut: 'terminé' },
+      { nom: 'Profile Information', statut: 'en cours' },
+      { nom: 'Business Information', statut: 'en attente' },
+      { nom: 'Theme', statut: 'refusé' },
+    ]"
+  />-->
   <router-view />
 </template>
 
@@ -6,6 +14,7 @@
 import { onMounted } from "vue";
 import { useStore } from "vuex";
 import Modal from "./components/modal/Modal.vue";
+import Steps from "./components/steps/Steps.vue";
 
 const store = useStore();
 
