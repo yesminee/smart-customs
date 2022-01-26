@@ -88,6 +88,12 @@ export const registration = async ({
         .then((res) => console.log("res " + res))
         .catch((err) => console.log("error " + err));
         */
-  console.log(addedUser);
+
   return { data: { token, user: addedUser } };
+};
+
+export const getAllUsers = async () => {
+  const Users = await User.find();
+  console.log(Users);
+  return Users;
 };
