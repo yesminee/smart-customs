@@ -1,6 +1,6 @@
 <template>
     <div class="w-full h-full overflow">
-        <div class="flex justify-center items-center min-w-0 mt-20 md:m-20">
+        <div class="flex justify-center items-center min-w-0 mt-10 md:m-10">
             <div class="relative max-w-3xl w-full space-y-8 bg-white shadow p-4 rounded">
                 <div class="flex flex-wrap">
                     <div class="w-full">
@@ -34,7 +34,7 @@
                         <div
                             class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded"
                         >
-                            <div class="px-4 py-5 flex-auto">
+                            <div class="px-4 py-3 flex-auto">
                                 <div class="tab-content tab-space">
                                     <div
                                         v-bind:class="{
@@ -44,7 +44,7 @@
                                     >
                                         <form action="#" method="POST">
                                             <input type="hidden" name="remember" value="true" />
-                                            <div class="flex w-full">
+                                            <div class="flex w-full space-x-2">
                                                 <div class="w-1/2">
                                                     <MDBInput
                                                         :class="
@@ -82,13 +82,13 @@
                                                     ></MDBInput>
                                                     <br />
                                                     <span
-                                                        v-if="erreur.adresseRue1"
+                                                        v-if="erreur.prenom"
                                                         class="text-red-700"
                                                     >Ce champ est obligatoire</span>
                                                 </div>
                                             </div>
 
-                                            <div class="flex w-full">
+                                            <div class="flex w-full space-x-2">
                                                 <div class="w-1/2">
                                                     <MDBInput
                                                         :class="
@@ -169,7 +169,7 @@
                                                 </span>
                                             </div>
 
-                                            <div class="flex mt-4">
+                                            <div class="flex space-x-2 mt-4">
                                                 <div>
                                                     <MDBInput
                                                         :class="
@@ -212,7 +212,7 @@
                                                 </div>
                                                 <br />
                                                 <select
-                                                    class="input flex-shrink-0 flex-1 h-10"
+                                                    class="input flex-shrink-0 flex-1 h-9 form-select"
                                                     placeholder="Type d'entreprise"
                                                     v-model="add.typeEntreprise"
                                                 >
@@ -235,7 +235,7 @@
                                                     >Société en participation</option>
                                                 </select>
                                             </div>
-                                             <div>
+                                            <div>
                                                 <MDBInput
                                                     :class="
                                                         erreur.adresseEnt
@@ -248,20 +248,24 @@
                                                     class="input w-full bg-white"
                                                     v-model="user.adresseEnt"
                                                 ></MDBInput>
-                                                <span class="text-red-700" v-if="erreur.adresseEnt">
-                                                    Ce champ est obligatoire
-                                                </span>
+                                                <span
+                                                    class="text-red-700"
+                                                    v-if="erreur.adresseEnt"
+                                                >Ce champ est obligatoire</span>
                                             </div>
-                                            <div class="flex w-full">
+                                            <div class="flex w-full space-x-2 mt-3">
                                                 <div class="w-1/2">
-                                                    <label for="dateDebAct" class="text-gray-600">Date de début d'activité</label>
+                                                    <label
+                                                        for="dateDebAct"
+                                                        class="text-gray-600"
+                                                    >Date de début d'activité</label>
                                                     <input
                                                         type="date"
                                                         id="dateDebAct"
                                                         v-model="user.dateDebAct"
                                                         min="1940-01-01"
                                                         :max="dateMAx"
-                                                            class="bg-gray-50 border border-gray-300 text-gray-500 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        class="bg-gray-50 border border-gray-300 text-gray-500 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         :class="
                                                             erreur.dateDebAct
                                                                 ? 'border border-red-500 shadow-none'
@@ -275,17 +279,18 @@
                                                 </div>
                                                 <br />
                                                 <div class="w-1/2">
-                                                    <label for="datePub" class="text-gray-600">Date de publication</label>
-                                                    <div class="relative">
-                                                      
-                                                    </div>
+                                                    <label
+                                                        for="datePub"
+                                                        class="text-gray-600"
+                                                    >Date de publication</label>
+                                                    <div class="relative"></div>
                                                     <input
                                                         type="date"
                                                         id="datePub"
                                                         v-model="user.datePub"
                                                         min="1940-01-01"
                                                         :max="dateMAx"
-                                                            class="bg-gray-50 text-gray-500 border border-gray-300  sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                                         :class="
                                                             erreur.datePub
                                                                 ? 'border border-red-500 shadow-none'
@@ -298,7 +303,7 @@
                                                     >Ce champ est obligatoire</span>
                                                 </div>
                                             </div>
-                                            <div class="flex w-full mt-4">
+                                            <div class="flex w-full space-x-2 mt-4">
                                                 <div class="w-1/2">
                                                     <MDBInput
                                                         :class="
@@ -341,7 +346,7 @@
                                                     >Ce champ est obligatoire</span>
                                                 </div>
                                             </div>
-                                            <div class="flex w-full">
+                                            <div class="flex w-full space-x-2">
                                                 <div class="w-1/2">
                                                     <MDBInput
                                                         :class="
@@ -384,7 +389,7 @@
                                                     >Ce champ est obligatoire</span>
                                                 </div>
                                             </div>
-                                            <div class="flex w-full">
+                                            <div class="flex w-full space-x-2">
                                                 <div class="w-1/2">
                                                     <MDBInput
                                                         :class="
@@ -426,7 +431,13 @@
                                                         class="text-red-700"
                                                     >Ce champ est obligatoire</span>
                                                 </div>
+                                                
                                             </div>
+                                <button
+                                                    @click="toggleTabs(2)"
+                                                    class="group relative float-right btn bg-indigo-700 font-medium text-white w-1/3  justify-center focus:ring-2 focus:ring-offset-2 "
+                                                >Continuer</button>
+                  
                                         </form>
                                     </div>
                                     <div
@@ -436,99 +447,114 @@
                                         }"
                                     >
                                         <form class="space-y-4" action="#" method="POST">
-                                            <div class="mt-4">
-                                                <div class="flex w-full">
+                                            <div class="mt-2">
+                                                <div class="flex w-full space-x-2">
                                                     <div class="w-1/2">
-                                                        <label for="numvol">Numéro volontaire</label>
-                                                        <input
-                                                            :class="
-                                                                erreur.numeroVolontaire
-                                                                    ? 'border border-indigo-500 shadow-none'
-                                                                    : ''
-                                                            "
-                                                            id="numeroVolontaire"
-                                                            name="numvol"
+                                                        <MDBInput
+                                                            id="adresseMagasin"
+                                                            label="Adresse de magasin"
                                                             type="text"
                                                             class="input w-full bg-white"
-                                                            placeholder="Numéro volontaire"
-                                                            v-model="user.numeroVolontaire"
-                                                        />
-                                                        <span
-                                                            class="text-indigo-700 text-center"
-                                                            v-if="erreur.numeroVolontaire1"
-                                                        >Ce champ est obligatoire.</span>
-                                                        <br />
-                                                        <span
-                                                            class="text-indigo-700"
-                                                            v-if="erreur.numeroVolontaire2"
-                                                        >Ce champ ne doit contenir que des chiffres.</span>
-                                                        <br />
+                                                            required
+                                                        ></MDBInput>
                                                     </div>
+                                                    <br />
                                                     <div class="w-1/2">
-                                                        <label for="adresse">Membre depuis</label>
-                                                        <input
-                                                            :class="
-                                                                erreur.MembreDepuis
-                                                                    ? 'border border-indigo-500 shadow-none'
-                                                                    : ''
-                                                            "
-                                                            type="date"
-                                                            id="MembreDepuis"
-                                                            name="trip-start"
-                                                            v-model="user.MembreDepuis"
-                                                            min="2000-01-01"
-                                                            :max="today"
-                                                            class="input w-full"
-                                                        />
-                                                        <span
-                                                            class="text-indigo-700"
-                                                            v-if="erreur.MembreDepuis1"
-                                                        >Ce champ est obligatoire.</span>
-                                                        <br />
+                                                        <MDBInput
+                                                            id="SuperficieMagasin"
+                                                            label="Superficie de magasin"
+                                                            type="text"
+                                                            class="input w-full bg-white"
+                                                            v-model="add.SuperficieMagasin"
+                                                            required
+                                                        ></MDBInput>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="mt-4">
-                                                <label for="password">Attestation</label>
-                                                <select
-                                                    id="Attestation"
-                                                    name="niveau"
-                                                    v-model="user.Attestation"
-                                                    class="input w-full cursor-pointer"
-                                                >
-                                                    <option>Premiers Secours</option>
-                                                    <option>Premiers Secours en Equipe</option>
-                                                    <option>Monitorat</option>
-                                                    <option>Insructorat</option>
-                                                </select>
+                                                <div class="flex w-full space-x-2">
+                                                    <div class="w-1/2">
+                                                        <MDBInput
+                                                            id="typeMagasin"
+                                                            label="Type de magasin"
+                                                            type="text"
+                                                            class="input w-full bg-white"
+                                                            v-model="add.typeMagasin"
+                                                            required
+                                                        ></MDBInput>
+                                                    </div>
+                                                    <br />
+                                                    <div class="w-1/2">
+                                                        <MDBInput
+                                                            id="descMagasin"
+                                                            label="Description de magasin"
+                                                            type="text"
+                                                            class="input w-full bg-white"
+                                                            v-model="add.descMagasin"
+                                                            required
+                                                        ></MDBInput>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <div class="flex w-full space-x-2">
+                                                    <div class="w-1/2">
+                                                        <MDBInput
+                                                            id="capacite"
+                                                            label="Capacité"
+                                                            type="text"
+                                                            class="input w-full bg-white"
+                                                            v-model="add.capacite"
+                                                            required
+                                                        ></MDBInput>
+                                                    </div>
+                                                    <br />
+                                                    <div class="w-1/2">
+                                                        <MDBInput
+                                                            id="equipement"
+                                                            label="Equipement"
+                                                            type="text"
+                                                            class="input w-full bg-white"
+                                                            v-model="add.equipement"
+                                                        ></MDBInput>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label
+                                                    for="dateLimteProtectionCivil"
+                                                    class="text-gray-600"
+                                                >Date limite de la protection civile</label>
+                                                <div class="relative"></div>
+                                                <input
+                                                    type="date"
+                                                    id="dateLimteProtectionCivil"
+                                                    v-model="user.dateLimteProtectionCivil"
+                                                    min="1940-01-01"
+                                                    :max="dateMAx"
+                                                    class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                />
                                             </div>
 
-                                            <div class="mt-4">
-                                                <label for="paye">Payé</label>
-                                                <div
-                                                    class="relative inline-block w-10 ml-2 align-middle select-none transition duration-200 ease-in"
-                                                >
-                                                    <input
-                                                        type="checkbox"
-                                                        v-model="user.paye"
-                                                        name="paye"
-                                                        id="paye"
-                                                        class="toggle-checkbox outline-none absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"
-                                                    />
-                                                    <label
-                                                        for="toggle"
-                                                        class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"
-                                                    ></label>
-                                                </div>
-                                            </div>
+                                            <label
+                                                class="form-label"
+                                                for="documents"
+                                            >Télécharger les documents</label>
+                                            <input
+                                                class="form-control"
+                                                type="file"
+                                                id="documents"
+                                                multiple
+                                            />
                                             <div class="flex justify-end">
                                                 <button
                                                     @click.prevent="enregistrer()"
-                                                    class="group relative btn btn-primary w-1/2 mr-2 justify-center focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    class="group relative btn bg-indigo-700 font-medium text-white w-1/2 mr-2 justify-center focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700"
                                                 >Enregistrer</button>
+
                                                 <button
                                                     @click="AnnulerAjout()"
-                                                    class="group relative btn btn-second w-1/2 justify-center focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                                    class="group relative btn btn-second w-1/2 font-medium text-indigo-700 justify-center focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                                 >Annuler</button>
                                             </div>
                                         </form>
@@ -565,17 +591,7 @@
                 </div>
                 <div class="w-auto text-grey-700 items-center p-4">
                     <span class="text-lg font-bold pb-4">Notification</span>
-                    <p class="leading-tight">
-                        Volontaire bien enregistrer.
-                        <br />
-                        <span class="font-semibold">Nom d'utilisateur:</span>
-                        <br />
-                        <span class="text-center ml-5">{{ user.username }}</span>
-                        <br />
-                        <span class="font-semibold">Mot de passe:</span>
-                        <br />
-                        <span class="text-center ml-5">{{ user.password }}</span>
-                    </p>
+                    <p class="leading-tight">Demande bien enregistrer.</p>
                 </div>
             </div>
         </div>
@@ -626,6 +642,8 @@ import { MDBBtn, MDBInput, MDBIcon } from "mdb-vue-ui-kit";
 import axios from "axios";
 import dayjs from "dayjs";
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 const NotifSucc = ref(false);
 const NotifFaild = ref(false);
@@ -633,39 +651,46 @@ const add = ref({
     nom: "",
     prenom: "",
     CIN: "",
-    numeroTel:"",
-    email:"",
-    nomEntreprise:"",
-    capitalSocial:"",
-    typeEntreprise:"Société à responsabilité limitée",
-    adresseEnt:"",
-    dateDebAct:"",
-    datePub:"",
-    actPrincipale:"",
-    actSecondaire:"",
-    matriculeFiscal:"",
-    NumRegistreCommerce:"",
-    NomSociteAssurance:"",
-    numContractAssurance:""
+    numeroTel: "",
+    email: "",
+    nomEntreprise: "",
+    capitalSocial: "",
+    typeEntreprise: "Société à responsabilité limitée",
+    adresseEnt: "",
+    dateDebAct: "",
+    datePub: "",
+    actPrincipale: "",
+    actSecondaire: "",
+    matriculeFiscal: "",
+    NumRegistreCommerce: "",
+    NomSociteAssurance: "",
+    numContractAssurance: "",
+    SuperficieMagasin: "",
+    typeMagasin: "",
+    descMagasin: "",
+    capacite: "",
+    equipement: "",
+    dateLimteProtectionCivil: ""
 });
 const user = ref({
     nom: "",
     prenom: "",
     CIN: "",
-    numeroTel:"",
-    email:"",
-    nomEntreprise:"",
-    capitalSocial:"",
-    typeEntreprise:"Société à responsabilité limitée",
-    adresseEnt:"",
-    dateDebAct:"",
-    datePub:"",
-    actPrincipale:"",
-    actSecondaire:"",
-    matriculeFiscal:"",
-    NumRegistreCommerce:"",
-    NomSociteAssurance:"",
-    numContractAssurance:""
+    numeroTel: "",
+    email: "",
+    nomEntreprise: "",
+    capitalSocial: "",
+    typeEntreprise: "Société à responsabilité limitée",
+    adresseEnt: "",
+    dateDebAct: "",
+    datePub: "",
+    actPrincipale: "",
+    actSecondaire: "",
+    matriculeFiscal: "",
+    NumRegistreCommerce: "",
+    NomSociteAssurance: "",
+    numContractAssurance: "",
+    dateLimteProtectionCivil: ""
 });
 const erreur = ref({
     nom: false,
@@ -682,18 +707,19 @@ const erreur = ref({
     numeroTel: false,
     numeroTel1: false,
     numeroTel2: false,
-   nomEntreprise:false,
-    capitalSocial:false,
-    dateDebAct:false,
-    dateDebAct1:false,
-    datePub:false,
-    datePub1:false,
-    actPrincipale:false,
-    actSecondaire:false,
-    matriculeFiscal:false,
-    NumRegistreCommerce:false,
-    NomSociteAssurance:false,
-    numContractAssurance:false
+    nomEntreprise: false,
+    capitalSocial: false,
+    dateDebAct: false,
+    dateDebAct1: false,
+    datePub: false,
+    datePub1: false,
+    actPrincipale: false,
+    actSecondaire: false,
+    matriculeFiscal: false,
+    NumRegistreCommerce: false,
+    NomSociteAssurance: false,
+    numContractAssurance: false,
+    adresseEnt: false
 });
 const openTab = ref(1);
 function toggleTabs(tabNumber: any) {
@@ -756,10 +782,10 @@ async function enregistrer() {
         erreur.value.CIN = false;
         erreur.value.CIN2 = false;
     }
- 
- 
-    
-    if (user.value.nomEntreprise="") {
+
+
+
+    if (user.value.nomEntreprise = "") {
         erreur.value.nomEntreprise = true;
         erreur.value.nomEntreprise = true;
         err = true;
@@ -767,7 +793,7 @@ async function enregistrer() {
         erreur.value.nomEntreprise = false;
         erreur.value.nomEntreprise = false;
     }
-    if (user.value.capitalSocial="") {
+    if (user.value.capitalSocial = "") {
         erreur.value.capitalSocial = true;
         erreur.value.capitalSocial = true;
         err = true;
@@ -775,7 +801,7 @@ async function enregistrer() {
         erreur.value.capitalSocial = false;
         erreur.value.capitalSocial = false;
     }
-    if (user.value.actPrincipale="") {
+    if (user.value.actPrincipale = "") {
         erreur.value.actPrincipale = true;
         erreur.value.actPrincipale = true;
         err = true;
@@ -783,7 +809,7 @@ async function enregistrer() {
         erreur.value.actPrincipale = false;
         erreur.value.actPrincipale = false;
     }
-    if (user.value.actSecondaire="") {
+    if (user.value.actSecondaire = "") {
         erreur.value.actSecondaire = true;
         erreur.value.actSecondaire = true;
         err = true;
@@ -791,7 +817,7 @@ async function enregistrer() {
         erreur.value.actSecondaire = false;
         erreur.value.actSecondaire = false;
     }
-    if (user.value.matriculeFiscal="") {
+    if (user.value.matriculeFiscal = "") {
         erreur.value.matriculeFiscal = true;
         erreur.value.matriculeFiscal = true;
         err = true;
@@ -799,7 +825,7 @@ async function enregistrer() {
         erreur.value.matriculeFiscal = false;
         erreur.value.matriculeFiscal = false;
     }
-    if (user.value.NumRegistreCommerce="") {
+    if (user.value.NumRegistreCommerce = "") {
         erreur.value.NumRegistreCommerce = true;
         erreur.value.NumRegistreCommerce = true;
         err = true;
@@ -807,7 +833,7 @@ async function enregistrer() {
         erreur.value.NumRegistreCommerce = false;
         erreur.value.NumRegistreCommerce = false;
     }
-    if (user.value.NomSociteAssurance="") {
+    if (user.value.NomSociteAssurance = "") {
         erreur.value.NomSociteAssurance = true;
         erreur.value.NomSociteAssurance = true;
         err = true;
@@ -815,7 +841,7 @@ async function enregistrer() {
         erreur.value.NomSociteAssurance = false;
         erreur.value.NomSociteAssurance = false;
     }
-    if (user.value.numContractAssurance="") {
+    if (user.value.numContractAssurance = "") {
         erreur.value.numContractAssurance = true;
         erreur.value.numContractAssurance = true;
         err = true;
@@ -823,7 +849,7 @@ async function enregistrer() {
         erreur.value.numContractAssurance = false;
         erreur.value.numContractAssurance = false;
     }
- 
+
     if (user.value.dateDebAct == "") {
         erreur.value.dateDebAct = true;
         erreur.value.dateDebAct1 = true;
@@ -832,7 +858,7 @@ async function enregistrer() {
         erreur.value.dateDebAct = false;
         erreur.value.dateDebAct1 = false;
     }
-       if (user.value.datePub == "") {
+    if (user.value.datePub == "") {
         erreur.value.datePub = true;
         erreur.value.datePub1 = true;
         err = true;
@@ -856,7 +882,15 @@ async function enregistrer() {
         erreur.value.numeroTel = false;
         erreur.value.numeroTel2 = false;
     }
-   
+    if (user.value.adresseEnt = "") {
+        erreur.value.adresseEnt = true;
+        erreur.value.adresseEnt = true;
+        err = true;
+    } else {
+        erreur.value.adresseEnt = false;
+        erreur.value.adresseEnt = false;
+    }
+
     const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!re.test(user.value.email)) {
         erreur.value.email = true;
@@ -871,22 +905,16 @@ async function enregistrer() {
     if (err) NotifFaild.value = true;
 
     if (!err) {
-        user.value.adresse =
-            add.value.adresseNumero +
-            " " +
-            add.value.adresseRue +
-            " " +
-            add.value.adresseMunicipalités;
-        user.value.username = user.value.prenom + " " + user.value.nom;
-        user.value.password = user.value.CIN;
         try {
-            const res = await axios.post("/api/v1/volontaire/add", user);
+            const res = await axios.post("/api/v1/demande/add", add.value);
         } catch (err) {
             console.log(err);
         }
         NotifSucc.value = true;
     }
 }
+
+
 function closeFaild() {
     NotifFaild.value = !NotifFaild;
 }
@@ -894,7 +922,7 @@ function closeSuccess() {
     NotifSucc.value = !NotifSucc;
 }
 function AnnulerAjout() {
-    //$router.push("/volontaires");
+    router.push("/magasin");
 }
 
 </script>
