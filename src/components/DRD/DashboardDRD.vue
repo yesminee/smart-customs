@@ -52,7 +52,7 @@
                     >
                       <div class="flex items-center">
                      
-                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700" @click="supprimer(demande.nom)"></i>
+                          <i class="fas fa-home fa-2x flex-shrink-0 w-10 h-10 text-indigo-700 cursor-pointer" @click="supprimer(demande.nom)"></i>
 
                         <div class="ml-3">
                           <p class="text-gray-900 whitespace-no-wrap font-semibold">
