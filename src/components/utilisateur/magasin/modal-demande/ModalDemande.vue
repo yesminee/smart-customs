@@ -99,7 +99,7 @@
                               class="input w-full bg-white"
                               maxlength="8"
                               minlength="8"
-                              v-model="user.CIN"
+                              v-model="add.CIN"
                               required
                             ></MDBInput>
                           </div>
@@ -108,11 +108,10 @@
                             <MDBInput
                               id="phone"
                               label="Numéro de téléphone"
-                              type="tel"
+                              type="text"
                               class="input w-full bg-white"
-                              maxlength="8"
-                              minlength="8"
-                              v-model="user.numeroTel"
+                      
+                              v-model="add.numeroTel"
                             ></MDBInput>
                           </div>
                         </div>
@@ -121,9 +120,9 @@
                           <MDBInput
                             id="email"
                             label="Email"
-                            type="email"
+                            type="text"
                             class="input w-full bg-white"
-                            v-model="user.email"
+                            v-model="add.email"
                           ></MDBInput>
                         </div>
 
@@ -175,18 +174,17 @@
                             label="Adresse d'entreprise"
                             type="string"
                             class="input w-full bg-white"
-                            v-model="user.adresseEnt"
+                            v-model="add.adresseEnt"
                           ></MDBInput>
                         </div>
                         <div class="flex w-full space-x-2">
                           <div class="w-1/2">
                             <label for="dateDebAct" class="text-gray-600">Date de début d'activité</label>
                             <input
-                              type="date"
+                              type="string"
                               id="dateDebAct"
-                              v-model="user.dateDebAct"
-                              min="1940-01-01"
-                              :max="dateMAx"
+                              v-model="add.dateDebAct"
+                            
                               class="bg-gray-50 border border-gray-300 text-gray-500 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
                           </div>
@@ -195,11 +193,10 @@
                             <label for="datePub" class="text-gray-600">Date de publication</label>
                             <div class="relative"></div>
                             <input
-                              type="date"
+                              type="string"
                               id="datePub"
-                              v-model="user.datePub"
-                              min="1940-01-01"
-                              :max="dateMAx"
+                              v-model="add.datePub"
+                            
                               class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             />
                           </div>
@@ -291,6 +288,7 @@
                                 id="adresseMagasin"
                                 label="Adresse de magasin"
                                 type="text"
+                                v-model="add.adresseDuMagasin"
                                 class="input w-full bg-white"
                                 required
                               ></MDBInput>
@@ -358,19 +356,15 @@
                           </div>
                         </div>
                         <div>
-                          <label
-                            for="dateLimteProtectionCivil"
-                            class="text-gray-600"
-                          >Date limite de la protection civile</label>
+                       
                           <div class="relative"></div>
-                          <input
-                            type="date"
+                          <MDBInput
+                            type="text"
                             id="dateLimteProtectionCivil"
-                            v-model="user.dateLimteProtectionCivil"
-                            min="1940-01-01"
-                            :max="dateMAx"
+                            v-model="add.dateLimteProtectionCivil"
+                            label="Date limite de la protection civile"
                             class="bg-gray-50 text-gray-500 border border-gray-300 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-4 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                          />
+                          ></MDBInput>
                         </div>
 
                         <label class="form-label" for="documents">Documents</label>
@@ -419,29 +413,30 @@ const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
 const doc = ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
 const add = ref({
-  nom: "",
-  prenom: "",
-  CIN: "",
-  numeroTel: "",
-  email: "",
-  nomEntreprise: "",
-  capitalSocial: "",
+   nom: "nom aifaoui",
+  prenom: "mohamed",
+  CIN: "02039797",
+  numeroTel: "22889141",
+  email: "mohammed6@gmail.com",
+  nomEntreprise: "FERCAM TUNISIE",
+  capitalSocial: "100.000 dt",
   typeEntreprise: "Société à responsabilité limitée",
-  adresseEnt: "",
-  dateDebAct: "",
-  datePub: "",
-  actPrincipale: "",
-  actSecondaire: "",
-  matriculeFiscal: "",
-  NumRegistreCommerce: "",
-  NomSociteAssurance: "",
-  numContractAssurance: "",
-  SuperficieMagasin: "",
-  typeMagasin: "",
-  descMagasin: "",
-  capacite: "",
-  equipement: "",
-  dateLimteProtectionCivil: "",
+  adresseEnt: "23, rue mosaddirin zone indistruelle rades, mileha",
+  adresseDuMagasin:"23, rue mosaddirin",
+  dateDebAct: "2012/09/14",
+  datePub: "2012/09/18",
+  actPrincipale: "Transport Maritime",
+  actSecondaire: "Services Complementaires Au Transport Maritime",
+  matriculeFiscal: "1265659Q",
+  NumRegistreCommerce: "B24177582012",
+  NomSociteAssurance: "GATT",
+  numContractAssurance: "201509200052",
+  SuperficieMagasin: "1200m²",
+  typeMagasin: "type3",
+  descMagasin: "unite de stockage et des flux douaniers pour differentes marchandises",
+  capacite: "3T , palans manuels 2.2T",
+  equipement: "2 Chariots élévateurs, 2 palans manuels ",
+  dateLimteProtectionCivil: "30/01/2022",
 });
 const user = ref({
   nom: "",
@@ -453,6 +448,8 @@ const user = ref({
   capitalSocial: "",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "",
+  adresseDuMagasin:"23, rue mosaddirin",
+
   dateDebAct: "",
   datePub: "",
   actPrincipale: "",

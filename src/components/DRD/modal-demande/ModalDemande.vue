@@ -284,7 +284,7 @@
                     >
                     
                       <form class="space-y-8" action="#" method="POST">
-                        <div class="mt-4">
+                        <div class="mt-8">
                           <div class="flex w-full space-x-2">
                             <div class="w-1/2">
                               <MDBInput
@@ -419,29 +419,30 @@ const today = dayjs(new Date()).format("YYYY-MM-DD");
 const dateMAx = new Date().getFullYear() - 15 + "-12-31";
 const doc = ref(["https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp", "https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp"])
 const add = ref({
-  nom: "",
-  prenom: "",
-  CIN: "",
-  numeroTel: "",
-  email: "",
-  nomEntreprise: "",
-  capitalSocial: "",
+   nom: "nom aifaoui",
+  prenom: "mohamed",
+  CIN: "02039797",
+  numeroTel: "22889141",
+  email: "mohammed6@gmail.com",
+  nomEntreprise: "FERCAM TUNISIE",
+  capitalSocial: "100.000 dt",
   typeEntreprise: "Société à responsabilité limitée",
-  adresseEnt: "",
-  dateDebAct: "",
-  datePub: "",
-  actPrincipale: "",
-  actSecondaire: "",
-  matriculeFiscal: "",
-  NumRegistreCommerce: "",
-  NomSociteAssurance: "",
-  numContractAssurance: "",
-  SuperficieMagasin: "",
-  typeMagasin: "",
-  descMagasin: "",
-  capacite: "",
-  equipement: "",
-  dateLimteProtectionCivil: "",
+  adresseEnt: "23, rue mosaddirin zone indistruelle rades, mileha",
+  adresseDuMagasin:"23, rue mosaddirin",
+  dateDebAct: "2012/09/14",
+  datePub: "2012/09/18",
+  actPrincipale: "Transport Maritime",
+  actSecondaire: "Services Complementaires Au Transport Maritime",
+  matriculeFiscal: "1265659Q",
+  NumRegistreCommerce: "B24177582012",
+  NomSociteAssurance: "GATT",
+  numContractAssurance: "201509200052",
+  SuperficieMagasin: "1200m²",
+  typeMagasin: "type3",
+  descMagasin: "unite de stockage et des flux douaniers pour differentes marchandises",
+  capacite: "3T , palans manuels 2.2T",
+  equipement: "2 Chariots élévateurs, 2 palans manuels ",
+  dateLimteProtectionCivil: "30/01/2022",
 });
 const user = ref({
   nom: "",
@@ -453,6 +454,8 @@ const user = ref({
   capitalSocial: "",
   typeEntreprise: "Société à responsabilité limitée",
   adresseEnt: "",
+  adresseDuMagasin:"23, rue mosaddirin",
+
   dateDebAct: "",
   datePub: "",
   actPrincipale: "",

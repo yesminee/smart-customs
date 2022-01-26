@@ -441,7 +441,7 @@ const add = ref({
   descMagasin: "unite de stockage et des flux douaniers pour differentes marchandises",
   capacite: "3T , palans manuels 2.2T",
   equipement: "2 Chariots élévateurs, 2 palans manuels ",
-  dateLimteProtectionCivil: "",
+  dateLimteProtectionCivil: "30/01/2022",
 });
 const user = ref({
   nom: "",
